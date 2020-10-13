@@ -143,7 +143,7 @@ this.show2=true;
   }
     if(this.flag==true)
     {     
-//
+
 //  this.GetPaymentById2()
 //
       this.DuePayment=(this.Invoice[0].invoiceAmount - this.Invoice[0].paymentAmount) +this.Old.paymentAmount;
