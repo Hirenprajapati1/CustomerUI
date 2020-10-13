@@ -1,0 +1,108 @@
+<div class="container" >
+    <div class="row">
+        <!-- <div class="col-md-2">
+        </div> -->
+        <div class="col-md-6 col-sm-offset-3"  style="margin-top: 8%;">
+            <mat-card class="col-md-10 col-sm-offset-1"  style="background-image: url('/../assets/BG.jpg');">
+                
+                <div class="container">
+           
+               <h1 class="text-center"><mat-label >Sign Up</mat-label></h1>
+                
+                <form>
+                  
+                        <mat-form-field style=" padding-left: 10%;"
+                         class=" example-full-width2 " >
+                            <mat-label><span class="req">* </span> First Name</mat-label>
+                            <input matInput  
+                             value="Admin.firstName" 
+                             [(ngModel)]="Admin.firstName"
+                             name="firstName" id="txt"
+                             placeholder="Enter First Name"> 
+                             <span matPrefix></span>                  
+                        </mat-form-field>
+
+                         <mat-form-field  style=" padding-right: 10%;" class="example-full-width2">
+                            <mat-label><span class="req">* </span>Last Name</mat-label>
+                                <input matInput [(ngModel)]="Admin.lastName"
+                                 name="lastName" id="lastName"
+                                 placeholder="Enter Your Sarname">
+                        </mat-form-field>
+                     
+                        <mat-form-field class=" example-full-width1 " >
+                            <mat-label><span class="req">* </span> UserName</mat-label>
+                            <input matInput  
+                             value="Admin.username" 
+                             [(ngModel)]="Admin.username"
+                             name="username" id="txt"
+                             placeholder="Enter User Name"> 
+                             <span matPrefix></span>                  
+                        </mat-form-field>
+
+                        <mat-label class=" example-full-width1 "><span class="req">* </span>Gender</mat-label>
+                        <div class="row example-full-width1 ">      
+                            <div class="col-4 ">
+                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
+                            name="gender" value="Male"> Male
+                            </div><div class="col-4 ">
+                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
+                            name="gender" value="Female"> Female 
+                            </div><div class="col-4 ">
+                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
+                            name="gender" value="Other"> Other 
+                            </div>
+                        </div>
+
+                        <!-- <mat-radio-group aria-label="Select an option" class=" example-full-width1 ">
+                            <mat-label><span class="req">* </span>Gender</mat-label>
+                            <br/>
+                            <div class=" example-full-width1 ">
+                                <mat-radio-button color="primary" [(ngModel)]="Admin.gender" value="Male">Male</mat-radio-button>
+                                <mat-radio-button color="primary" [(ngModel)]="Admin.gender" value="Female">Female</mat-radio-button>
+                                <mat-radio-button color="primary" [(ngModel)]="Admin.gender" value="Other">Other</mat-radio-button>
+                            </div>
+                        </mat-radio-group>
+                           
+                        <mat-label  class=" example-full-width1 "><span class="req">* </span>Regian</mat-label> 
+                            <div  class=" example-full-width1 ">
+                                <input type="checkbox" [(ngModel)]="Admin.region"value="a" color="primary" >East
+                                <input type="checkbox" [(ngModel)]="Admin.region"value="b" color="primary" class="example-margin" >Wast
+                                <input type="checkbox" [(ngModel)]="Admin.region" Value="c" color="primary" >North
+                                <input type="checkbox" [(ngModel)]="Admin.region"Value="d" color="primary" class="example-margin" >South 
+                            </div> -->
+
+                            <mat-label class=" example-full-width1 "><span class="req">* </span>Regian</mat-label>
+                            <div class="row example-full-width1">
+                            <div class="col-4 " *ngFor="let reg Of Regians">   
+                                <input  type="checkbox"  value="{{reg}}" (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
+                                <!-- <input type="checkbox" [(ngModel)]="Admin.region"value="East"> East &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" [(ngModel)]="Admin.region"value="Wast"> Wast &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" [(ngModel)]="Admin.region" Value="North"> North &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" [(ngModel)]="Admin.region"Value="South"> South &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                            </div>
+                            </div>
+    
+
+                        <mat-form-field class=" example-full-width1 " >
+                            <mat-label><span class="req">* </span> Password</mat-label>
+                            <input matInput  
+                             value="Admin.password" 
+                             [(ngModel)]="Admin.password"
+                             name="password" id="txt"
+                             placeholder="Enter Password"> 
+                             <span matPrefix></span>                  
+                        </mat-form-field>
+
+                    <div class=" example-full-width1 text-center "style="margin-top: 2%;" >
+                        <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit_reg" value="Sign Up" 
+                        (click)="Registration()">
+                        <input (click)="gotoLogin()" class =" btn btn-link"type="button" value="Already have Account Sign In!">            
+                    </div>           
+                <router-outlet></router-outlet>
+               </form>
+                </div>
+        </mat-card>
+
+        </div>                            
+    </div>
+</div>

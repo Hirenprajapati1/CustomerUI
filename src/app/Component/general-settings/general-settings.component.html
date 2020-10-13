@@ -1,0 +1,54 @@
+<mat-card [ngStyle]="{'background-color':' rgb(232, 240, 243)'}" >
+    <div class="row">        
+        <div class="col-md-12"  >
+            <div style="margin-top: 10px;" >     
+                    <div>           
+                    <mat-card-title>General Settings</mat-card-title>
+                    <hr/>
+                        <div class="col-md-6 margin" >
+                            <mat-card>
+                                <mat-card-subtitle>Customers</mat-card-subtitle>
+                                <hr/>
+                                <!-- <mat-slide-toggle  color="primary" #toggleBtn checked (click)="toggle()">Auto!</mat-slide-toggle> -->
+                                <h5>
+                                    <mat-label color="primary"  >Auto Incriment No</mat-label>
+                                    <mat-slide-toggle (change)="UpdateGeneralSettings()" color="primary"style="float: right;" #toggleBtn [(ngModel)]="GSData[0].autoCustomerNo" ></mat-slide-toggle>
+                                </h5>
+                            </mat-card>
+                        </div>
+    
+                        <div class="col-md-6 margin" >
+                            <mat-card>
+                                <mat-card-subtitle>Invoices</mat-card-subtitle>
+                                <hr/>
+                                <h5>
+                                    <mat-label color="primary"  >Auto Incriment No</mat-label>
+                                    <mat-slide-toggle (change)="UpdateGeneralSettings()" color="primary"style="float: right;" [(ngModel)]="GSData[0].autoInvoiceNo" ></mat-slide-toggle>
+                                </h5>
+                            </mat-card>
+                        </div>  
+                        
+                        <div class="col-md-6 margin" >
+                            <mat-card>
+                                <mat-card-subtitle>Payments</mat-card-subtitle>
+                                <hr/>
+                                <h5>
+                                    <mat-label color="primary"  >Auto Incriment No</mat-label>
+                                    <mat-slide-toggle  (change)="UpdateGeneralSettings()" color="primary"style="float: right;" #toggleBtn [(ngModel)]="GSData[0].autoPaymentNo" ></mat-slide-toggle>
+                                </h5>
+                            </mat-card>
+                        </div>
+                        
+                        <!-- <div class="col-md-12 margin" >
+                                <button type="submit"(click)="UpdateGeneralSettings(GSData)" class="btn btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn btn-warning" >Clear</button> 
+                                <input class="btn btn btn-success "(click)="UpdateGeneralSettings()" type="submit"  value="submit" >
+                        </div> -->
+                              
+                </div>             
+            </div>
+        </div>
+        </div>
+   
+</mat-card>
+          

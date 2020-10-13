@@ -1,0 +1,42 @@
+<div class="row">        
+    <div class="col-md-12" >
+        <div style="margin-top: 10px;">     
+            <div class="card">
+                <h2 class="card-header">{{title}}
+                    <input style="float: right;" class="btn btn-success"(click)="gotoadd()"type="button" value="Add">
+                </h2>
+               
+                <div class="card-body ">
+                    <div>
+                    <p id="table_PaymentFilter"><label><b>Select Customer:</b></label><br></p>
+                        <table id="table_Payment" class="display table table-striped">   
+                            <thead>
+                                <tr>
+                                    <th >Payment No</th>
+                                    <th >Customer Name  </th>
+                                    <th >Invoice No</th>
+                                    <th >Payment Date</th>
+                                    <th >Payment Amount</th> 
+                                    <th>Actions</th>
+                     
+                                </tr>
+                            </thead>
+                            <!-- <tfoot>
+                                <tr>
+                                    <th >Month &nbsp;</th>
+                                    <th >Customer&nbsp;Name &nbsp; </th>
+                                    <th >No&nbsp;of&nbsp;Invoices &nbsp;</th>
+                                    <th >Sales &nbsp;</th>
+                                    <th >Payment&nbsp;Collection &nbsp;</th> 
+                                </tr>
+                            </tfoot> -->
+
+                            <tbody>
+                            </tbody>
+        
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

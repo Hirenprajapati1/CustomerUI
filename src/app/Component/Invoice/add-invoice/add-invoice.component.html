@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        <mat-card>       <!-- <form [formGroup]="form"> -->
+            <form>
+                <h1 class="text-center"><mat-label >Add Invoice</mat-label></h1>
+        
+      
+                <mat-form-field appearance="fill" class=" example-full-width1 " *ngIf="!GS[0].autoInvoiceNo">
+                    <mat-label><span class="req">* </span>Invoice No</mat-label>            
+                    <input matInput  
+                     [(ngModel)]="inv.invoiceNo"
+                     name="invoiceNo" id="txt"
+                    placeholder="Enter Invoice No"> 
+                     <span matPrefix></span>      
+                </mat-form-field>
+          
+                <mat-form-field appearance="fill" class=" example-full-width1 " *ngIf="GS[0].autoInvoiceNo">
+                    <mat-label><span class="req">* </span>Invoice No</mat-label>
+                    
+                    <input matInput  
+                     value="inv.invoiceNo" readonly
+                     [(ngModel)]="inv.invoiceNo"[ngModel]="Invo[0].invoiceNo"
+                     name="invoiceNo" id="txt"
+                    placeholder="Enter Invoice No"> 
+                     <span matPrefix>I</span>      
+                </mat-form-field>
+                <!-- <mat-slide-toggle  color="primary" #toggleBtn checked (click)="toggle()">Auto!</mat-slide-toggle> -->
+              
+                <!-- <div class="form-group" class="example-full-width1" >
+                    <label for="invoiceNo"><span class="req">* </span> Invoice No </label>
+                    <input class="form-control" type="text"
+                     [(ngModel)]="inv.invoiceNo"[ngModel]="Invo[0].invoiceNo"
+                      name="invoiceNo" id="txt"
+                     placeholder="Enter Customer No">
+                        
+                
+                </div>
+   -->
+          
+                            <!-- <div class="form-group">
+                                <label for="customerNo"><span class="req">* </span> Customer No </label>
+                                <input class="form-control" type="text" [(ngModel)]="inv.customerNo" name="customerNo" id="txt"
+                                    placeholder="Enter Customer No">
+                            </div>
+               -->
+               <!-- <div>
+               <mat-form-field>
+                <mat-select [(ngModel)]="inv.customerNo"  placeholder="Customer">
+                  <mat-option>
+                    <ngx-mat-select-search ></ngx-mat-select-search>
+                  </mat-option>
+                  <mat-option *ngFor="let cust of Customer1" [value]='cust.customerNo'>
+                    {{cust.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+               </div>  -->
+
+
+
+               <mat-form-field appearance="fill" class=" example-full-width1 ">
+                <mat-select name="competence_1_name" [(ngModel)]="inv.customerNo" name="customerNo">
+                  <mat-option>Select customerName</mat-option>
+                  <mat-option 
+                  *ngFor="let cust of Customer1" 
+                  [ngValue]='cust.customerNo'
+                   value="{{cust.customerNo }}">
+                   {{cust.customerName}}   &nbsp; &nbsp;  ({{cust.customerNo}})</mat-option>
+                </mat-select>
+                <mat-label><span class="req">* </span> Customer:</mat-label>
+              </mat-form-field>
+              
+                   <!-- <div class="form-group">
+                                <label for="customerNo"><span class="req">* </span> Customer Name </label>
+                               
+                                <select [(ngModel)]="inv.customerNo" class="form-control" name="customerNo">
+                                    <option  *ngFor="let cust of Customer1" [ngValue]='cust.customerNo'><span>{{cust.customerName}}</span> &nbsp;&nbsp;<span style="float: right;"> ({{cust.customerNo}})</span></option>
+                                 </select>
+                              </div> -->
+
+         
+                              <mat-form-field appearance="fill" class="example-full-width1">
+                                <mat-label><span class="req">* </span>Invoice Amount:</mat-label>
+                                    <input matInput type="number" min="0" step="0.01"
+                                    [(ngModel)]="inv.invoiceAmount" name="invoiceAmount"
+                                    id="invoiceAmount"
+                                    placeholder="Enter Invoice Amount">
+                            </mat-form-field>
+
+                        <!-- <div class="form-group">
+                            <label for="invoiceAmount"><span class="req">* </span>Invoice Amount:</label>
+                            <input  type="number" min="0" step="0.01" 
+                             [(ngModel)]="inv.invoiceAmount" name="invoiceAmount"
+                              id="invoiceAmount"
+                            class="form-control" placeholder="Enter Invoice Amount">
+                        </div> -->
+
+                                 
+                        <mat-form-field   appearance="fill"class="example-full-width1">
+                            <mat-label><span class="req">* </span>Invoice Date:</mat-label>
+                                <input matInput type="date" 
+                                [(ngModel)]=" inv.invoiceDate"
+                                [ngModel]=" TodayDate  | date:'yyyy-MM-dd'"
+                                 name="paymentDate" id="txt1"
+                               placeholder="Enter Invoice Date"/>   
+                               <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle> -->
+                               <!-- <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                                  -->
+                           </mat-form-field>
+
+<!-- 
+                        <div class="form-group">
+                            <label for="invoiceDate"> Invoice Date: </label>
+                            <input class="form-control" type="date"
+                             [(ngModel)]="inv.invoiceDate"
+                             [ngModel]="inv.invoiceDate | date:'yyyy-MM-dd'"
+                              name="paymentDate" id="txt1"
+                            placeholder="Enter Invoice Date"/>                  
+                          </div>
+         
+ -->
+
+                <div  class=" btn-group" style="padding-left:10% ;">
+                    <input class="btn btn-success" type="submit" name="submit_reg" value="Submit" 
+                    (click)="AddInvoice()">
+                    <input (click)="gotoList()" class = "btn btn-warning"routerLink="/GetEmployeePath"type="button" value="Goto List">            
+                </div>
+                <div style="margin-top: 2%;"  class=" example-full-width2">  
+                <span class="req ">Note : If You Not Select Date Then it Take Current Date </span>
+                </div>
+                <router-outlet></router-outlet>
+        </form><!-- ends register form -->
+    </mat-card>
+ 
+  
+    </div><!-- ends col-12 -->
+</div>

@@ -1,0 +1,367 @@
+    <!-- Content Header (Page header) -->
+
+    <!-- <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Dashboard</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a routerLink="./DashBoard">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      
+ 
+
+
+
+<div class="container-fluid" > 
+    <!-- Info boxes -->
+    <div class="row">
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-4" routerLink="/Nav/ListCustomer">
+      <div class="info-box mb-3">
+        
+        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+        <div class="info-box-content">
+
+          <!-- <span class="info-box-text">Totel Customer :     
+            <b>{{Data[0].totelCustomer}}</b>
+          </span>
+    
+          <span class="info-box-text">This Year      
+            <span class="info-box-text">New Customers :     
+              <b>{{Data[0].customerYearly}} </b>
+            </span>
+            <span class="info-box-text">Groth :     
+              <b>{{Data[0].customerYearlyGrowth}} %</b>
+            </span>
+          </span>
+   
+          <span class="info-box-text">This Month     
+            <span class="info-box-text">New Customers :     
+              <b>{{Data[0].customerMonthly}} </b>
+            </span>
+            <span class="info-box-text">Groth :     
+              <b>{{Data[0].customerMonthlyGrowth}} %</b>
+            </span>
+          </span> -->
+          <span class="info-box-text">Totel Customer</span>
+          <span class="info-box-number">{{Data[0].totelCustomer}}</span>         
+        </div>
+        <!-- <a routerLink="/Nav/ListCustomer" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+   
+        <!-- /.info-box-content --> 
+      </div>
+
+      <div>  
+        <div style="width: 50%; float: left;" class=" info-box mb-3">
+          <div class="info-box-content">
+            <span class="info-box-text"><h5><b>This Year</b></h5>      
+            <span class="info-box-text">New Customers :     
+              <b>{{Data[0].customerYearly}} </b>
+            </span>
+            <span class="info-box-text">Growth :     
+              <b>{{Data[0].customerYearlyGrowth}}<small>%</small></b>
+            </span>
+          </span>
+        </div>
+        </div>
+        <div style="width: 50%; float: left;" class="info-box mb-3 ">
+          <div class="info-box-content">
+       
+          <span class="info-box-text"><h5><b>This Month</b></h5>     
+            <span class="info-box-text">New Customers :     
+              <b>{{Data[0].customerMonthly}} </b>
+            </span>
+            <span class="info-box-text">Growth :     
+              <b>{{Data[0].customerMonthlyGrowth}}<small>%</small></b>
+            </span>
+          </span> 
+          </div>
+        </div>
+      </div> 
+    
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <div class="col-12 col-sm-6 col-md-4" routerLink="/Nav/ListInvoice">
+      
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+       
+        <div class="info-box-content">
+          <span class="info-box-text">Totel Sales</span>
+          <span class="info-box-number">  {{Data[0].totelSeles | currency}} </span>
+        </div>
+ 
+        <!-- <a routerLink="/Nav/ListInvoice" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->   
+        <!-- /.info-box-content -->
+      </div>
+      <div>  
+        <div style="width: 50%; float: left;" class=" info-box mb-3">
+          <div class="info-box-content">
+            <span class="info-box-text"><h5><b>This Year</b></h5>      
+            <span class="info-box-text">Totel Sales :     
+              <b>{{Data[0].salesYearly | currency}} </b>
+            </span>
+            <span class="info-box-text">Growth :     
+              <b>{{Data[0].salesYearlyGrowth}}<small>%</small></b>
+            </span>
+          </span>
+        </div>
+        </div>
+        <div style="width: 50%; float: left;" class="info-box mb-3 ">
+          <div class="info-box-content">
+       
+          <span class="info-box-text"><h5><b>This Month</b></h5>     
+            <span class="info-box-text">Tolel Sales:     
+              <b>{{Data[0].salesMonthly | currency}} </b>
+            </span>
+            <span class="info-box-text">Growth :     
+              <b>{{Data[0].salesMonthlyGrowth}}<small>%</small></b>
+            </span>
+          </span> 
+          </div>
+        </div>
+      </div> 
+  
+      <!-- /.info-box -->
+    </div>
+      <!-- fix for small devices only -->
+      <div class="clearfix hidden-md-up"></div>
+
+      <div class="col-12 col-sm-6 col-md-4" routerLink="/Nav/ListPayment">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-info elevation-1"><mat-icon > attach_money</mat-icon></span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Totel Payment Collection</span>
+            <!-- <span class="info-box-text"></span>          -->
+            <span class="info-box-number">  {{Data[0].totelPaymentCollestions | currency}} </span>
+          </div>
+
+  
+
+          <!-- <a routerLink="/Nav/ListPayment" class="small-box-footer"
+          >More info <i class="fas fa-arrow-circle-right"></i
+        ></a> -->
+         
+   
+          </div>
+          <!-- /.info-box-content -->
+          <div>  
+            <div style="width: 50%; float: left;" class=" info-box mb-3">
+              <div class="info-box-content">
+                <span class="info-box-text"><h5><b>This Year</b></h5>     
+                <span class="info-box-text">Totel Payment Collection :     
+                </span>
+                <span>      <b>{{Data[0].paymentCollestionsYearly | currency}} </b>
+                </span>
+                <span class="info-box-text">Growth :     
+                  <b>{{Data[0].paymentCollestionsYearlyGrowth}}<small>%</small></b>
+                </span>
+              </span>
+            </div>
+            </div>
+            <div style="width: 50%; float: left;" class="info-box mb-3 ">
+              <div class="info-box-content">
+           
+              <span class="info-box-text"><h5><b>This Month</b></h5>     
+                <span class="info-box-text">Totel Payment Collection:     
+                </span>
+                <span>       <b>{{Data[0].paymentCollestionsMonthly | currency}} </b>
+                </span>
+                <span class="info-box-text">Growth :     
+                  <b>{{Data[0].paymentCollestionsMonthlyGroth}}<small>%</small></b>
+                </span>
+              </span> 
+              </div>
+            </div>
+          </div> 
+       
+        <!-- /.info-box -->
+      </div>
+  
+
+
+ 
+
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Monthly Recap Report</h5>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <div class="btn-group">
+                <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                  <i class="fas fa-wrench"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                  <a href="#" class="dropdown-item">Action</a>
+                  <a href="#" class="dropdown-item">Another action</a>
+                  <a href="#" class="dropdown-item">Something else here</a>
+                  <a class="dropdown-divider"></a>
+                  <a href="#" class="dropdown-item">Separated link</a>
+                </div>
+              </div>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <p class="text-center">
+                  <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                </p>
+
+                <div class="chart">
+                  <!-- Sales Chart Canvas -->
+                  <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                </div>
+                <!-- /.chart-responsive -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <p class="text-center">
+                  <strong>Goal Completion</strong>
+                </p>
+
+                <div class="progress-group">
+                  Add Products to Cart
+                  <span class="float-right"><b>160</b>/200</span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                  </div>
+                </div>
+                <!-- /.progress-group -->
+
+                <div class="progress-group">
+                  Complete Purchase
+                  <span class="float-right"><b>310</b>/400</span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                  </div>
+                </div>
+
+                <!-- /.progress-group -->
+                <div class="progress-group">
+                  <span class="progress-text">Visit Premium Page</span>
+                  <span class="float-right"><b>480</b>/800</span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                  </div>
+                </div>
+
+                <!-- /.progress-group -->
+                <div class="progress-group">
+                  Send Inquiries
+                  <span class="float-right"><b>250</b>/500</span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-warning" style="width: 50%"></div>
+                  </div>
+                </div>
+                <!-- /.progress-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- ./card-body -->
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-sm-3 col-6">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                  <h5 class="description-header">$35,210.43</h5>
+                  <span class="description-text">TOTAL REVENUE</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-3 col-6">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                  <h5 class="description-header">$10,390.90</h5>
+                  <span class="description-text">TOTAL COST</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-3 col-6">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+                  <h5 class="description-header">$24,813.53</h5>
+                  <span class="description-text">TOTAL PROFIT</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-3 col-6">
+                <div class="description-block">
+                  <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                  <h5 class="description-header">1200</h5>
+                  <span class="description-text">GOAL COMPLETIONS</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-md-12" >
+      <app-list-report></app-list-report>
+    </div>
+    <div class="col-md-8" >
+      <app-list-customer></app-list-customer>
+    </div>
+    <!-- <div style="display: block;">
+      <canvas baseChart width="400" height="400"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [colors]="lineChartColors"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div> -->
+        <!-- [options]="lineChartOptions" -->
+        <!-- <div class="chart-wrapper">
+          <canvas baseChart 
+              [datasets]="lineChartData" 
+              [labels]="lineChartLabels" 
+              [options]="lineChartOptions"
+              [colors]="lineChartColors" 
+              [legend]="lineChartLegend" 
+              [chartType]="lineChartType" 
+              [plugins]="lineChartPlugins">
+          </canvas>
+      </div> -->
+    </div>
+    <!-- Main row -->
+  </div><!--/. container-fluid -->
+ 
