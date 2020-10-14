@@ -15,11 +15,12 @@
       <a mat-list-item [routerLinkActive]="['is-active']"routerLink="./ListInvoice"><mat-icon  color="primary"> local_library</mat-icon><span style="color: rgb(84, 38, 168);">Invoice</span></a>
       <a mat-list-item [routerLinkActive]="['is-active']"routerLink="./ListPayment"><mat-icon  color="primary"> attach_money</mat-icon><span style="color: rgb(84, 38, 168);">Payment</span></a>
       <a mat-list-item [routerLinkActive]="['is-active']"routerLink="./ListReport" ><mat-icon color="primary">equalizer</mat-icon><span style="color: rgb(84, 38, 168);">Report</span></a> 
-      <a mat-list-item [routerLinkActive]="['is-active']"routerLink="./GeneralSettings" ><mat-icon color="primary">settings</mat-icon><span style="color: rgb(84, 38, 168);">General Settings</span></a> 
+      <a mat-list-item [routerLinkActive]="['is-active']"routerLink="./GeneralSettings" ><mat-icon color="primary">settings</mat-icon><span style="color: rgb(84, 38, 168);">General Settings</span></a>      
+      <a mat-list-item [routerLinkActive]="['is-active']"routerLink="./GeneralSettings" ><mat-icon color="primary">verified_user</mat-icon><span style="color: rgb(84, 38, 168);">Security</span></a>      
      
-      <a mat-list-item class="Logout"  (click)="onLogout()" ><mat-icon color="primary">screen_lock_portrait</mat-icon><span style="color: rgb(84, 38, 168);">Log Out</span></a>
+      <!-- <a mat-list-item class="Logout"  (click)="onLogout()" ><mat-icon color="primary">screen_lock_portrait</mat-icon><span style="color: rgb(84, 38, 168);">Log Out</span></a> -->
       <!-- <a mat-list-item [routerLinkActive]="['is-active']"routerLink="/Registration"><mat-icon color="primary"></mat-icon><span style="color: rgb(84, 38, 168);">Registration</span></a>  -->
-   
+     
       
     </mat-nav-list>
   </mat-sidenav>
@@ -33,9 +34,16 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <mat-icon>public</mat-icon><span>Smart Invoice System</span><mat-icon>school</mat-icon>
+      <span style="max-width: 45%; text-size-adjust: 40%;">Customer Invoice and Payment Management</span>
        <span class="spacer"></span>
-       {{FullName}}
+        <span mat-button data-title="Edit Profile"routerLink="./EditProfile" style="max-width: 45%;">{{FullName}}</span>  
+        &nbsp;&nbsp;
+        <div (click)="onLogout()"  data-title="Sign Out " class="example-button-container">
+          <button mat-mini-fab color="warn" >
+            <span > <i class="fas fa-sign-out-alt" ></i></span>
+          </button>
+        </div>
+        <!-- <span (click)="onLogout()"  title="Sign Out"> <i class="fas fa-sign-out-alt"style="color:red" ></i></span> -->
     </mat-toolbar>
     <ng-content>      
     </ng-content>

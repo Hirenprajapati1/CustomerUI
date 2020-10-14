@@ -1,3 +1,4 @@
+import { EditProfileComponent } from './Component/edit-profile/edit-profile.component';
 import { MainComponent } from './Component/main/main.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { HeaderComponent } from './Component/Main/header/header.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
 
   {path:'', redirectTo:'DashBoard',pathMatch :'full'},
   {path:'DashBoard',component:DashboardComponent,canActivate:[AuthGuard]},
+  {path:'EditProfile',component:EditProfileComponent,canActivate:[AuthGuard]},
   
   {path:'ListReport',component:ListReportComponent,canActivate:[AuthGuard]},
  

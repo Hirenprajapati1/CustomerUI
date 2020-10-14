@@ -2,12 +2,12 @@
     <div class="row">
         <!-- <div class="col-md-2">
         </div> -->
-        <div class="col-md-6 col-sm-offset-3"  style="margin-top: 8%;">
-            <mat-card class="col-md-10 col-sm-offset-1"  style="background-image: url('/../assets/BG.jpg');">
+        <div class="col-md-6 col-sm-offset-3"  style="margin-top: 2%;">
+            <mat-card   style="background-image: url('/../assets/BG.png');">
                 
                 <div class="container">
            
-               <h1 class="text-center"><mat-label >Sign Up</mat-label></h1>
+               <h1 class="text-center"><mat-label >Edit Profile</mat-label></h1>
                 
                 <form>
                   
@@ -94,17 +94,40 @@
 
                             <mat-label class=" example-full-width1 "><span class="req">* </span>Regian</mat-label>
                             <div class="row example-full-width1">
-                            <div class="col-4 " *ngFor="let reg Of Regians">   
-                                <input  type="checkbox"  value="{{reg}}" (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
+                            <!-- <div class="col-4 " *ngFor="let reg Of Regians ">   
+                                <input  type="checkbox" value="{{reg}}"  (change)= regianchange($event) /><mat-label> {{reg}} </mat-label> -->
                                 <!-- <input type="checkbox" [(ngModel)]="Admin.region"value="East"> East &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" [(ngModel)]="Admin.region"value="Wast"> Wast &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" [(ngModel)]="Admin.region" Value="North"> North &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" [(ngModel)]="Admin.region"Value="South"> South &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                            <!-- </div> -->
+                            <div *ngFor="let reg Of Regians">
+                                <div *ngFor="let sr of selectedRegians">
+                                    <div *ngIf="sr != reg" >
+                                        <input  type="checkbox" value="{{reg}}"
+                                         (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
+                                    </div> 
+                                    <div *ngIf="sr == reg">
+                                        <input  type="checkbox" value="{{reg}}" checked  
+                                        (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
+                                    </div>     
+                                </div>
                             </div>
+
+                            <!-- <div *ngFor="let phone of selectedRegians" ng-if="phone">
+                                {{phone}}  
+                                <div *ngFor="let brand of Regians "  ng-if="phone === brand">
+                                  <label>
+                                    <input type="checkbox" ng-model="phone.selected">  
+                                    {{brand}}
+                                  </label>
+                                </div>
+                              </div>
+                             -->
                             </div>
     
 
-                        <mat-form-field class=" example-full-width1 " >
+                        <!-- <mat-form-field class=" example-full-width1 " >
                             <mat-label><span class="req">* </span> Password</mat-label>
                             <input matInput  type="password"
                              value="Admin.password" 
@@ -112,12 +135,11 @@
                              name="password" id="txt"
                              placeholder="Enter Password"> 
                              <span matPrefix></span>                  
-                        </mat-form-field>
+                        </mat-form-field> -->
 
                     <div class=" example-full-width1 text-center "style="margin-top: 2%;" >
-                        <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit_reg" value="Sign Up" 
+                        <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit_reg" value="Submit" 
                         (click)="Registration()">
-                        <input (click)="gotoLogin()" class =" btn btn-link"type="button" value="Already have Account Sign In!">            
                     </div>           
                 <router-outlet></router-outlet>
                </form>

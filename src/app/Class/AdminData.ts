@@ -5,6 +5,10 @@ export class AdminData{
     gender:string;
     region:string;
     password:string;
+    email:string;
+    contactNo:number;
+    createdDate:string;
+    modifyDate:string;
   }
   
 //   {"username":"Hiren",
@@ -14,7 +18,13 @@ export class AdminData{
 //   "region":"North,East",
 //   "password":"1234",
 //   "userId":0,
-//   "token":null}
+//   "token":null
+// "email":null,
+// "contactNo":null,
+// "password":"2345",
+// "createdDate":null,
+// "modifyDate":null
+// }
 
 
 // export class DashboardData{

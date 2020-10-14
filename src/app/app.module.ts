@@ -52,6 +52,7 @@ import { MenuSidebarComponent } from './Component/Main/menu-sidebar/menu-sidebar
 import { UserDropdownMenuComponent } from './Component/Main/header/user-dropdown-menu/user-dropdown-menu.component';
 import { NotificationsDropdownMenuComponent } from './Component/Main/header/notifications-dropdown-menu/notifications-dropdown-menu.component';
 import { MessagesDropdownMenuComponent } from './Component/Main/header/messages-dropdown-menu/messages-dropdown-menu.component';
+import { EditProfileComponent } from './Component/edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +79,7 @@ import { MessagesDropdownMenuComponent } from './Component/Main/header/messages-
     UserDropdownMenuComponent,
     NotificationsDropdownMenuComponent,
     MessagesDropdownMenuComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
