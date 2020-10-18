@@ -151,6 +151,11 @@ export class AddInvoiceComponent implements OnInit {
     }
   }
 
+  if(this.inv.invoiceNo ==undefined && this.flag==true){
+    this.toastr.warning('Invoice No Is Requried','Requried Field!.');   
+    this.flag=false;
+
+  }
     if(this.flag==true)
     {
       let resp=this.service.AddInvoiceNoByUser(this.inv);

@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from './../../Services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { AdminData } from './../../Class/AdminData';
@@ -10,6 +11,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  form = new FormGroup({
+    firstName: new FormControl('',Validators.required),
+    lastName: new FormControl('',Validators.required),
+    username: new FormControl('',Validators.required),
+    contactNo: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),  
+    email: new FormControl('',[Validators.required, Validators.email]),
+    password: new FormControl('',[Validators.required, Validators.minLength(6)]),
+    gender: new FormControl('',Validators.required),
+    region: new FormControl('',Validators.required)
+  })
+  
 
   Admin: AdminData =new AdminData();
   message :any;
@@ -70,8 +82,10 @@ export class RegistrationComponent implements OnInit {
 
 Registration()
 {
-  this.Admin.region=this.selectedRegians.toString();
-  console.log(this.Admin.region);
+ 
+  {
+    this.Admin.region=this.selectedRegians.toString();
+    console.log(this.Admin.region);
     let resp=this.service.AddAdmin(this.Admin);
     resp.subscribe((data)=>{(this.message=data)
 
@@ -88,7 +102,7 @@ Registration()
       this.toastr.error('Something went wrong', 'Error');
     }
   });
-}
+}}
 
 gotoLogin(){
   localStorage.removeItem('token');

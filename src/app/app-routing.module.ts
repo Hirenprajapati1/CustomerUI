@@ -31,27 +31,26 @@ const routes: Routes = [
  // {path:'Nav',component:HeaderComponent,
   {path:'Nav',component:RootNavComponent,
   children: [
-
   {path:'', redirectTo:'DashBoard',pathMatch :'full'},
-  {path:'DashBoard',component:DashboardComponent,canActivate:[AuthGuard]},
-  {path:'EditProfile',component:EditProfileComponent,canActivate:[AuthGuard]},
+  {path:'DashBoard',component:DashboardComponent},
+  {path:'EditProfile',component:EditProfileComponent},
   
-  {path:'ListReport',component:ListReportComponent,canActivate:[AuthGuard]},
+  {path:'ListReport',component:ListReportComponent},
  
-  {path:'ListCustomer',component:ListCustomerComponent,canActivate:[AuthGuard]},
-  {path:'AddCustomer',component:AddCustomerComponent,canActivate:[AuthGuard]},
-  {path:'UpdateCustomer/:id',component:UpdateCustomerComponent,canActivate:[AuthGuard]},
+  {path:'ListCustomer',component:ListCustomerComponent},
+  {path:'AddCustomer',component:AddCustomerComponent},
+  {path:'UpdateCustomer/:id',component:UpdateCustomerComponent},
  
-  {path:'ListInvoice',component:ListInvoiceComponent,canActivate:[AuthGuard]},
-  {path:'ListPay/:id',component:ListOfPaymentComponent,canActivate:[AuthGuard]},
-  {path:'AddInvoice',component:AddInvoiceComponent,canActivate:[AuthGuard]},
-  {path:'UpdateInvoice/:id',component:UpdateInvoiceComponent,canActivate:[AuthGuard]},
+  {path:'ListInvoice',component:ListInvoiceComponent},
+  {path:'ListPay/:id',component:ListOfPaymentComponent},
+  {path:'AddInvoice',component:AddInvoiceComponent},
+  {path:'UpdateInvoice/:id',component:UpdateInvoiceComponent},
  
-  {path:'ListPayment',component:ListPaymentComponent,canActivate:[AuthGuard]},
-  {path:'AddPayment',component:AddPaymentComponent,canActivate:[AuthGuard]},
-  {path:'UpdatePayment/:id',component:UpdatePaymentComponent,canActivate:[AuthGuard]},
+  {path:'ListPayment',component:ListPaymentComponent},
+  {path:'AddPayment',component:AddPaymentComponent},
+  {path:'UpdatePayment/:id',component:UpdatePaymentComponent},
 
-  {path:'GeneralSettings',component:GeneralSettingsComponent,canActivate:[AuthGuard]},
+  {path:'GeneralSettings',component:GeneralSettingsComponent},
 ]}  
 ];
 

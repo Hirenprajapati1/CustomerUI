@@ -20,20 +20,16 @@ export class EditProfileComponent implements OnInit {
     private route: ActivatedRoute,private router: Router,
     private service:AuthenticationService) { }
 
-  ngOnInit(): void {
- //   this.name = this.route.snapshot.params['name'];
-  
- {this.service.GetAdminByID(this.name)
+  ngOnInit(): void {  
+ this.service.GetAdminByID(this.name)
     .subscribe(data => {
       console.log(data)
       this.Admin = data;
       this.selectedRegians=this.Admin.region.split(',');
       console.log(this.selectedRegians)
-
     }, error => console.log(error)); 
   }
- 
-  }
+
   Regians=["North","South","East","West"]
   // Regians=[
   //   {
@@ -84,8 +80,4 @@ export class EditProfileComponent implements OnInit {
     });
   }
   
-
-
-
-
 }

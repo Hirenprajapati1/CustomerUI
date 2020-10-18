@@ -3,14 +3,23 @@
         <!-- <div class="col-md-2">
         </div> -->
         <div class="col-md-6 col-sm-offset-3"  style="margin-top: 2%;">
-            <mat-card   style="background-image: url('/../assets/BG.png');">
+            <mat-card   style="background-image: url('/../assets/BG111.png');">
                 
                 <div class="container">
            
                <h1 class="text-center"><mat-label >Edit Profile</mat-label></h1>
                 
                 <form>
-                  
+                    <mat-form-field class=" example-full-width1 " >
+                        <mat-label><span class="req">* </span> User Name</mat-label>
+                        <input matInput  readonly
+                         value="Admin.username" 
+                         [(ngModel)]="Admin.username"
+                         name="username" id="txt"
+                         placeholder="Enter User Name"> 
+                         <span matPrefix></span>                  
+                    </mat-form-field>
+
                         <mat-form-field style=" padding-left: 10%;"
                          class=" example-full-width2 " >
                             <mat-label><span class="req">* </span> First Name</mat-label>
@@ -29,15 +38,6 @@
                                  placeholder="Enter Your Sarname">
                         </mat-form-field>
                      
-                        <mat-form-field class=" example-full-width1 " >
-                            <mat-label><span class="req">* </span> User Name</mat-label>
-                            <input matInput  
-                             value="Admin.username" 
-                             [(ngModel)]="Admin.username"
-                             name="username" id="txt"
-                             placeholder="Enter User Name"> 
-                             <span matPrefix></span>                  
-                        </mat-form-field>
 
 
                         <mat-form-field class=" example-full-width1 " >
@@ -101,18 +101,42 @@
                                 <input type="checkbox" [(ngModel)]="Admin.region" Value="North"> North &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" [(ngModel)]="Admin.region"Value="South"> South &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
                             <!-- </div> -->
-                            <div *ngFor="let reg Of Regians">
-                                <div *ngFor="let sr of selectedRegians">
-                                    <div *ngIf="sr != reg" >
+
+
+                            
+    <!-- Hello
+    <div *ngIf="condition; else elseStatement"> 
+        when condition is true. 
+    </div> 
+    <ng-template #elseStatement> 
+        when condition is false. 
+    </ng-template>  -->
+
+
+
+                                <div *ngFor="let reg Of Regians " >                                   
+                                  
+                                    <!-- <div>
                                         <input  type="checkbox" value="{{reg}}"
-                                         (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
-                                    </div> 
-                                    <div *ngIf="sr == reg">
-                                        <input  type="checkbox" value="{{reg}}" checked  
-                                        (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
-                                    </div>     
-                                </div>
+                                        (change)= regianchange($event) id="id{{reg}}" name="name{{reg}}"/>
+                                        <mat-label> {{reg}} </mat-label>
+                                    </div>  -->
+
+                                   <!-- <div *ngFor="let sr of selectedRegians">                            -->
+                                        <div> 
+                                            <input  type="checkbox" value="{{reg}}" checked  
+                                            (change)= regianchange($event) id="id{{sr}}"  name="name{{sr}}"/>
+                                            <mat-label> {{reg}} </mat-label>
+                                        </div>    
+                                         <!-- <ng-template #elseStatement> 
+                                            <input  type="checkbox" value="{{reg}}"
+                                            (change)= regianchange($event) id="id{{reg}}" name="name{{reg}}"/>
+                                            <mat-label> {{reg}} </mat-label>
+                                        </ng-template>  -->
+                                    <!-- </div> -->
+
                             </div>
+                         
 
                             <!-- <div *ngFor="let phone of selectedRegians" ng-if="phone">
                                 {{phone}}  
@@ -125,7 +149,11 @@
                               </div>
                              -->
                             </div>
-    
+
+     
+
+
+
 
                         <!-- <mat-form-field class=" example-full-width1 " >
                             <mat-label><span class="req">* </span> Password</mat-label>

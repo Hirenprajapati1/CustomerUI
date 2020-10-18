@@ -1,3 +1,4 @@
+import { MyFilterPipe } from './Class/my-filter-pipe';
 import { ChartsModule } from 'ng2-charts';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -53,6 +54,8 @@ import { UserDropdownMenuComponent } from './Component/Main/header/user-dropdown
 import { NotificationsDropdownMenuComponent } from './Component/Main/header/notifications-dropdown-menu/notifications-dropdown-menu.component';
 import { MessagesDropdownMenuComponent } from './Component/Main/header/messages-dropdown-menu/messages-dropdown-menu.component';
 import { EditProfileComponent } from './Component/edit-profile/edit-profile.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +83,7 @@ import { EditProfileComponent } from './Component/edit-profile/edit-profile.comp
     NotificationsDropdownMenuComponent,
     MessagesDropdownMenuComponent,
     EditProfileComponent,
+    MyFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -108,7 +112,8 @@ import { EditProfileComponent } from './Component/edit-profile/edit-profile.comp
     MatDialogModule, 
     MatRadioModule,
     MatCheckboxModule,
-    ChartsModule
+    ChartsModule,
+    Ng2SearchPipeModule
     //MatMomentDateModule,
   ],
   providers: [],
