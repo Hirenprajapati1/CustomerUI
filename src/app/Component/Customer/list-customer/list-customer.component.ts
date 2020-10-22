@@ -122,11 +122,11 @@ $("#table_Customer tbody").on("click", "a.editor_remove", e => {
   }
 
   updateCustomer(id: number){
-    this.router.navigate(['/Nav/UpdateCustomer', id]);
+    this.router.navigate(['/UpdateCustomer', id]);
   }
 
   gotoadd(){
-      this.router.navigate(['/Nav/AddCustomer']);
+      this.router.navigate(['/AddCustomer']);
   }
   reloadData() {
     this.Custdata=this.service.GetCustomer().subscribe((data)=>this.Custdata=data); 

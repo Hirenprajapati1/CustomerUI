@@ -1,3 +1,4 @@
+import { NavbarService } from './../Services/navbar.service';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -19,7 +20,7 @@ FullName:any;
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private router: Router) {
+  constructor(private breakpointObserver: BreakpointObserver,private router: Router, public nav: NavbarService ) {
     this.GetName();
   }
 
@@ -33,7 +34,6 @@ this.FullName='Hello Miss.'+this.Name
 }else{
 this.FullName='Hello '+this.Name
 }
-
 }
 
   onLogout() {

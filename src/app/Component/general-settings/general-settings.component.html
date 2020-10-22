@@ -1,12 +1,12 @@
-<mat-card [ngStyle]="{'background-color':' rgb(232, 240, 243)'}" >
+<mat-card  style="margin-top: 10px;">
     <div class="row">        
         <div class="col-md-12"  >
-            <div style="margin-top: 10px;" >     
+            <div  >     
                     <div>           
                     <mat-card-title>General Settings</mat-card-title>
                     <hr/>
                         <div class="col-md-6 margin" >
-                            <mat-card>
+                            <mat-card [ngStyle]="{'background-color':' rgb(232, 240, 243)'}">
                                 <mat-card-subtitle>Customers</mat-card-subtitle>
                                 <hr/>
                                 <!-- <mat-slide-toggle  color="primary" #toggleBtn checked (click)="toggle()">Auto!</mat-slide-toggle> -->
@@ -18,7 +18,7 @@
                         </div>
     
                         <div class="col-md-6 margin" >
-                            <mat-card>
+                            <mat-card [ngStyle]="{'background-color':' rgb(232, 240, 243)'}">
                                 <mat-card-subtitle>Invoices</mat-card-subtitle>
                                 <hr/>
                                 <h5>
@@ -29,7 +29,7 @@
                         </div>  
                         
                         <div class="col-md-6 margin" >
-                            <mat-card>
+                            <mat-card [ngStyle]="{'background-color':' rgb(232, 240, 243)'}">
                                 <mat-card-subtitle>Payments</mat-card-subtitle>
                                 <hr/>
                                 <h5>

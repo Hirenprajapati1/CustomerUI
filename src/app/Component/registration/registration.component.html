@@ -11,11 +11,11 @@
                 
                 <form [formGroup]="form" >
                   
-                        <mat-form-field style=" padding-left: 10%;"
-                         class=" example-full-width2 " >
-                            <mat-label><span class="req">* </span> First Name</mat-label>
-                            <input matInput  
+                    <div class="form-group">
+                        <mat-label><span class="req">* </span> First Name</mat-label>
+                            <input   
                              value="Admin.firstName" 
+                             class="form-control"
                              [(ngModel)]="Admin.firstName"
                              name="firstName" id="txt"
                              placeholder="Enter First Name"
@@ -24,30 +24,31 @@
                              .touched && form.get('firstName').invalid}"
                              > 
                              <span matPrefix></span>      
-                             <mat-error class="invalid-feedback">
+                             <div class="invalid-feedback">
                                 First Name is required 
-                            </mat-error>  
-                        </mat-form-field>
+                             </div>  
+                        </div>
 
-                         <mat-form-field  style=" padding-right: 10%;" class="example-full-width2">
+                        <div class="form-group">
                             <mat-label><span class="req">* </span>Last Name</mat-label>
-                                <input matInput [(ngModel)]="Admin.lastName"
-                                 name="lastName" id="lastName"
+                                <input [(ngModel)]="Admin.lastName"
+                                class="form-control"
+                                name="lastName" id="lastName"
                                  placeholder="Enter Your Sarname"
                                  formControlName="lastName"
                                   [ngClass]="{'is-invalid': form.get('lastName')
                                  .touched && form.get('lastName').invalid}"
                                   > 
-                                  <span matPrefix></span>      
-                                  <mat-error class="invalid-feedback">
+                                  <div class="invalid-feedback">
                                      Last Name is required 
-                                 </mat-error>
-                        </mat-form-field>
-                     
-                        <mat-form-field class=" example-full-width1 " >
+                                  </div>
+                                </div>
+                        
+                            <div class="form-group">
                             <mat-label><span class="req">* </span> User Name</mat-label>
-                            <input matInput  
+                            <input   
                              value="Admin.username" 
+                             class="form-control"
                              [(ngModel)]="Admin.username"
                              name="username" id="txt"
                              placeholder="Enter User Name"   
@@ -55,18 +56,17 @@
                               [ngClass]="{'is-invalid':form.get('username')
                               .touched && form.get('username').invalid}"
                               > 
-                              <span matPrefix></span>      
-                              <mat-error class="invalid-feedback">
+                              <div class="invalid-feedback">
                                 User Name is required 
-                             </mat-error>          
+                              </div>          
                     
-                        </mat-form-field>
-
-
-                        <mat-form-field class=" example-full-width1 " >
+                            </div>
+      
+                            <div class="form-group">
                             <mat-label><span class="req">* </span>Email</mat-label>
-                            <input matInput  type="email"
-                             value="Admin.email" 
+                            <input  type="email"
+                            class="form-control"
+                            value="Admin.email" 
                              [(ngModel)]="Admin.email"
                              name="email" id="txtemail"
                              placeholder="Enter Your Email "  
@@ -74,17 +74,17 @@
                             [ngClass]="{'is-invalid':form.get('email')
                              .touched && form.get('email').invalid}"
                               > 
-                              <span matPrefix></span>      
-                              <mat-error  *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                              <div   class="invalid-feedback">
                                 <div *ngIf="form.get('email').errors.required">Email is required </div>
                                 <div *ngIf="form.get('email').errors.email">Email must be valid email address </div>
                             
-                            </mat-error>          
-                        </mat-form-field>
+                              </div>          
+                            </div>
 
-                        <mat-form-field class=" example-full-width1 " >
+                            <div class="form-group">
                             <mat-label><span class="req">* </span>Contact No</mat-label>
-                            <input matInput type="number"  
+                            <input  type="tel"  
+                            class="form-control"
                              value="Admin.contactNo" 
                              [(ngModel)]="Admin.contactNo"
                              name="contactNo" id="txtcontactNo"
@@ -93,84 +93,119 @@
                              [ngClass]="{'is-invalid':form.get('contactNo')
                              .touched && form.get('contactNo').invalid}"
                              > 
-                            <mat-error   *ngIf="form.get('contactNo').touched && form.get('contactNo').invalid" class="invalid-feedback">
+                            <div   class="invalid-feedback">
                                 <div *ngIf="form.get('contactNo').errors.required">Mobile Number is required.</div>
                                 <div *ngIf="form.get('contactNo').errors.pattern">Please, Enter 10 digit Mobile Number.</div>
-                            </mat-error>          
-
-                        </mat-form-field>
-
-                        <mat-label class=" example-full-width1 "><span class="req">* </span>Gender</mat-label>
-                        <div class="row example-full-width1 "     [ngClass]="{'is-invalid':form.get('contactNo')
-                        .touched && form.get('contactNo').invalid}">      
-                            <div class="col-4 ">
-                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
-                            name="gender" value="Male"> Male
-                            </div><div class="col-4 ">
-                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
-                            name="gender" value="Female"> Female 
-                            </div><div class="col-4 ">
-                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
-                            name="gender" value="Other"> Other 
-                            </div>
+                            </div>          
                         </div>
-                        <div class="invalid-feedback">
-                            User Name is required 
-                        </div>          
 
-
-                        <!-- <mat-radio-group aria-label="Select an option" class=" example-full-width1 ">
-                            <mat-label><span class="req">* </span>Gender</mat-label>
+                        
+                        <div class="form-group">      
+                            <mat-label ><span class="req">* </span>Gender</mat-label>
                             <br/>
-                            <div class=" example-full-width1 ">
-                                <mat-radio-button color="primary" [(ngModel)]="Admin.gender" value="Male">Male</mat-radio-button>
-                                <mat-radio-button color="primary" [(ngModel)]="Admin.gender" value="Female">Female</mat-radio-button>
-                                <mat-radio-button color="primary" [(ngModel)]="Admin.gender" value="Other">Other</mat-radio-button>
-                            </div>
-                        </mat-radio-group>
-                           
-                        <mat-label  class=" example-full-width1 "><span class="req">* </span>Regian</mat-label> 
-                            <div  class=" example-full-width1 ">
-                                <input type="checkbox" [(ngModel)]="Admin.region"value="a" color="primary" >East
-                                <input type="checkbox" [(ngModel)]="Admin.region"value="b" color="primary" class="example-margin" >Wast
-                                <input type="checkbox" [(ngModel)]="Admin.region" Value="c" color="primary" >North
-                                <input type="checkbox" [(ngModel)]="Admin.region"Value="d" color="primary" class="example-margin" >South 
-                            </div> -->
+                            <input type="radio"
+                            [(ngModel)]="Admin.gender" Name ="Gender"
+                            name="gender" value="Male" 
+                            formControlName="gender" 
+                            [ngClass]="{'is-invalid':form.get('gender')
+                             .touched && form.get('gender').invalid}"
+                            > Male
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
+                            name="gender" value="Female"
+                            formControlName="gender" 
+                            [ngClass]="{'is-invalid':form.get('gender')
+                             .touched && form.get('gender').invalid}"
+                            > Female 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio"[(ngModel)]="Admin.gender" Name ="Gender"
+                            name="gender" value="Other"
+                            formControlName="gender" 
+                            [ngClass]="{'is-invalid':form.get('gender')
+                             .touched && form.get('gender').invalid}"
+                            > Other 
+                            <div class="invalid-feedback  example-full-wi dth1">
+                                <div *ngIf="form.get('gender').errors.required">Mobile Number is required.</div>
+                            </div>           
+    
+                        </div> 
+               
+                         <!-- <mat-label class=" example-full-width1 "><span class="req">* </span>Gender</mat-label>
+                        <mat-radio-group [(ngModel)]="Admin.gender" aria-label="Select an option" class="row example-full-width1"
+                        >      
+                            <mat-radio-button  Name ="Gender"
+                            name="gender" value="Male"
+                            formControlName="gender" 
+                            [ngClass]="{'is-invalid':form.get('gender')
+                             .touched && form.get('gender').invalid}"
+                            > Male </mat-radio-button>&nbsp;&nbsp;
+                            <mat-radio-button  Name ="Gender"
+                            name="gender" value="Female"
+                            formControlName="gender" 
+                            [ngClass]="{'is-invalid':form.get('gender')
+                             .touched && form.get('gender').invalid}"
+                            > Female </mat-radio-button>&nbsp;&nbsp;
+                            <mat-radio-button  Name ="Gender"
+                            name="gender" value="Other"
+                            formControlName="gender" 
+                            [ngClass]="{'is-invalid':form.get('gender')
+                             .touched && form.get('gender').invalid}"
+                             > Other </mat-radio-button> 
+                        </mat-radio-group> 
+                        <div class="invalid-feedback  example-full-width1">
+                            <div *ngIf="form.get('gender').errors.required">Mobile Number is required.</div>
+                        </div> -->
 
-                            <mat-label class=" example-full-width1 "><span class="req">* </span>Regian</mat-label>
-                            <div class="row example-full-width1">
+                            <!-- <mat-label class=" example-full-width1 "><span class="req">* </span>Regian</mat-label>
+                            <div class="row example-full-width1" >
                             <div class="col-4 " *ngFor="let reg Of Regians">   
                                 <input  type="checkbox"  value="{{reg}}" (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
-                                <!-- <input type="checkbox" [(ngModel)]="Admin.region"value="East"> East &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="checkbox" [(ngModel)]="Admin.region"value="Wast"> Wast &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="checkbox" [(ngModel)]="Admin.region" Value="North"> North &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="checkbox" [(ngModel)]="Admin.region"Value="South"> South &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
                             </div>
                             </div>
+                            <div class="invalid-feedback  example-full-width1">
+                                <b>   Minimam 1 Gegian is required </b>
+                            </div>           -->
+           
+                            <div class="form-group">
+                                <mat-label><span class="req">* </span>Password</mat-label>
+                                    <input [(ngModel)]="Admin.password"
+                                    class="form-control" type="password"
+                                    name="password" id="txtpassword"
+                                     placeholder="Enter password"
+                                     formControlName="password1"
+                                     [ngClass]="{'is-invalid':form.get('password1')
+                                     .touched && form.get('password1').invalid}"
+                                     > 
+                                     <div class="invalid-feedback">
+                                       Password is required 
+                                     </div>          
+                            </div>                                                       
     
 
-                        <mat-form-field class=" example-full-width1 " >
+
+
+                            <!-- <div class="form-group">
                             <mat-label><span class="req">* </span> Password</mat-label>
-                            <input matInput  type="password"
+                            <input  type="password"  
+                            class="form-control"
                              value="Admin.password" 
                              [(ngModel)]="Admin.password"
-                             name="password" id="txt"
-                             placeholder="Enter Password"
+                             name="password" id="txtpassword"
+                             placeholder="Enter Password "
                              formControlName="password" 
-                            [ngClass]="{'is-invalid':form.get('password')
+                             [ngClass]="{'is-invalid':form.get('password')
                              .touched && form.get('password').invalid}"
-                              > 
-                              <mat-error  *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
-                                <div *ngIf="form.get('password').errors.required">Password is required </div>
-                                <div *ngIf="form.get('password').errors.minLength">Password must be atlist 6 charectot </div>    
-                            </mat-error>                   
-                        </mat-form-field>
-
+                             > 
+                            <div class="invalid-feedback">
+                                Password is required
+                              </div>          
+                            </div>
+ -->
 
                         
                     <div class=" example-full-width1 text-center "style="margin-top: 2%;" >
-                        <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit_reg" value="Sign Up" 
-                        (click)="Registration()"  [disabled]="!form.valid">
+                        <input class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid" type="submit" name="submit_reg" value="Sign Up" 
+                        (click)="Registration()"  >
                         <input (click)="gotoLogin()" class =" btn btn-link"type="button" value="Already have Account Sign In!">            
                     </div>           
                 <router-outlet></router-outlet>

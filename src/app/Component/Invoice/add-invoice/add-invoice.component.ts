@@ -261,7 +261,7 @@ export class AddInvoiceComponent implements OnInit {
     }
   }
     gotoList() {
-     this.router.navigate(["/Nav/ListInvoice"]);    
+     this.router.navigate(["/ListInvoice"]);    
     }
 
 

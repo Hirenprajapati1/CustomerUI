@@ -68,7 +68,9 @@ export class EditProfileComponent implements OnInit {
   
       if(data >= 1)
       {
-        this.toastr.success('Registration Successfully!.');
+        this.toastr.success('Profile is Updated Successfully!.');
+        this.router.navigate(["/LoginPath"]);    
+ 
       }
       else if( data == -1)
       {

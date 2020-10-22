@@ -203,6 +203,6 @@ UpdatePaymentWithoutToster(){
 
 
   gotoList() {
-    this.router.navigate(["/Nav/ListPayment"]);    
+    this.router.navigate(["/ListPayment"]);    
    }
 }

@@ -310,7 +310,7 @@ Payment2WithoutToster()
 
   }
     gotoList() {
-     this.router.navigate(["/Nav/ListPayment"]);    
+     this.router.navigate(["/ListPayment"]);    
     }
 
 }

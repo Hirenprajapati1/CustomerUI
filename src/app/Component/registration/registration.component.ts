@@ -1,3 +1,4 @@
+import { NavbarService } from './../../Services/navbar.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from './../../Services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
@@ -17,9 +18,9 @@ export class RegistrationComponent implements OnInit {
     username: new FormControl('',Validators.required),
     contactNo: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),  
     email: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required, Validators.minLength(6)]),
     gender: new FormControl('',Validators.required),
-    region: new FormControl('',Validators.required)
+    password1: new FormControl('',Validators.required)
+    // region: new FormControl('',Validators.required)
   })
   
 
@@ -28,30 +29,17 @@ export class RegistrationComponent implements OnInit {
  
   constructor(private toastr:ToastrService,
     private route: ActivatedRoute,private router: Router,
-    private service:AuthenticationService) { }
+    private service:AuthenticationService,public nav: NavbarService ) {
+      this.nav.hide();
+     }
 
   ngOnInit(): void {
-  }
+//    this.nav.show();
+    this.Admin.gender= "Male";
+
+}
   selectedRegians:any=[];
   Regians=["North","South","East","West"]
-  // Regians=[
-  //   {
-  //     "key":"North",
-  //     "value":"North"
-  //   },
-  //   {
-  //     "key":"South",
-  //     "value":"South"
-  //   },
-  //   {
-  //     "key":"East",
-  //     "value":"East"
-  //   },
-  //   {
-  //     "key":"West",
-  //     "value":"West"
-  //   }
-  // ]
   regianchange(event){
     let index =this.selectedRegians.indexOf(event.target.value);
     if (index == -1){
@@ -61,40 +49,21 @@ export class RegistrationComponent implements OnInit {
     }
     console.log(this.selectedRegians)
   }
-  // items = [
-  //   {'name':'South'},
-  //   {'name':'North'},
-  //   {'name':'East'},
-  //   {'name':'West'}
-    
-  // ];
-
-  // category= []
-
-  // checkChange(i){
-  //   if (this.category[i]){  
-  //     this.category[i] = !this.category[i];
-  //   }
-  //   else{
-  //     this.category[i] = true;
-  //   }
-  // }
-
+  
 Registration()
 {
  
   {
-    this.Admin.region=this.selectedRegians.toString();
-    console.log(this.Admin.region);
+//    this.Admin.region=this.selectedRegians.toString();
     let resp=this.service.AddAdmin(this.Admin);
     resp.subscribe((data)=>{(this.message=data)
 
-    if(data >= 1)
+    if(this.message >= 1)
     {
       this.gotoLogin()
       this.toastr.success('Registration Successfully!.');
     }
-    else if( data == -1)
+    else if( this.message == -1)
     {
       this.toastr.warning('UserName is already exists','Failed.');
     }

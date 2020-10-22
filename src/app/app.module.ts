@@ -55,7 +55,7 @@ import { NotificationsDropdownMenuComponent } from './Component/Main/header/noti
 import { MessagesDropdownMenuComponent } from './Component/Main/header/messages-dropdown-menu/messages-dropdown-menu.component';
 import { EditProfileComponent } from './Component/edit-profile/edit-profile.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { GoogleChartsModule } from 'angular-google-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,7 +113,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatRadioModule,
     MatCheckboxModule,
     ChartsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    GoogleChartsModule,
     //MatMomentDateModule,
   ],
   providers: [],

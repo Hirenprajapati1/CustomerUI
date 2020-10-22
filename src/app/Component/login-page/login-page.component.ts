@@ -1,3 +1,4 @@
+import { NavbarService } from './../../Services/navbar.service';
 import { AuthenticationService } from './../../Services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
@@ -20,11 +21,14 @@ export class LoginPageComponent implements OnInit {
   flag:boolean;
   flag1:boolean;
   constructor(private toastr:ToastrService,private route: ActivatedRoute,private router: Router,
-    private service:AuthenticationService) { }
+    private service:AuthenticationService,public nav: NavbarService ) {
+      this.nav.hide();
+     }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
     if (localStorage.getItem('token') != null)
     this.router.navigate(["/ListReport"]);    
+
   }
 
   // Login(){
@@ -66,7 +70,8 @@ export class LoginPageComponent implements OnInit {
           localStorage.setItem('gender', res.gender);
           localStorage.setItem('region', res.region);
           this.toastr.success("login Successfully");
-          this.router.navigate(["/Nav"]);    
+          this.nav.show(); 
+          this.gotDashBoard();
           // this.gotoList();
           // this.router.navigateByUrl('/home');
         },
@@ -94,8 +99,8 @@ export class LoginPageComponent implements OnInit {
   //   }
   // }
 
-  gotoList() {
-    this.router.navigate(["/Nav"]);    
+  gotDashBoard() {
+    this.router.navigate(["/DashBoard"]);    
   }
    
 }

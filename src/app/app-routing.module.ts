@@ -6,7 +6,7 @@ import { RootNavComponent } from './root-nav/root-nav.component';
 import { GeneralSettingsComponent } from './Component/general-settings/general-settings.component';
 import { RegistrationComponent } from './Component/registration/registration.component';
 import { ListOfPaymentComponent } from './Component/Invoice/list-of-payment/list-of-payment.component';
-import { AuthGuard } from './Component/auth.guard';
+//import { AuthGuard } from './Component/auth.guard';
 import { LoginPageComponent } from './Component/login-page/login-page.component';
 import { UpdatePaymentComponent } from './Component/Payment/update-payment/update-payment.component';
 import { AddPaymentComponent } from './Component/Payment/add-payment/add-payment.component';
@@ -23,15 +23,18 @@ import { ListCustomerComponent } from './Component/Customer/list-customer/list-c
 
 
 const routes: Routes = [
-  {path:'', redirectTo:'Nav',pathMatch :'full'},
+//  {path:'', redirectTo:'Nav',pathMatch :'full'},
   {path:'LoginPath',component:LoginPageComponent},
-  
+  {path:'', redirectTo:'DashBoard',pathMatch :'full'},
+ 
   {path:'Registration',component:RegistrationComponent},
  // {path:'Nav',component:MainComponent,
  // {path:'Nav',component:HeaderComponent,
-  {path:'Nav',component:RootNavComponent,
-  children: [
-  {path:'', redirectTo:'DashBoard',pathMatch :'full'},
+ // {path:'Nav',component:RootNavComponent,
+  {path:'Nav',component:RootNavComponent},
+  
+  //children: [
+ // {path:'', redirectTo:'DashBoard',pathMatch :'full'},
   {path:'DashBoard',component:DashboardComponent},
   {path:'EditProfile',component:EditProfileComponent},
   
@@ -51,7 +54,7 @@ const routes: Routes = [
   {path:'UpdatePayment/:id',component:UpdatePaymentComponent},
 
   {path:'GeneralSettings',component:GeneralSettingsComponent},
-]}  
+//]}  
 ];
 
 @NgModule({

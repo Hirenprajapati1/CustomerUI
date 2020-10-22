@@ -198,11 +198,11 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
   }
 
   updatePayment(id: number){
-    this.router.navigate(['/Nav/UpdatePayment', id]);
+    this.router.navigate(['/UpdatePayment', id]);
   }
   
   gotoadd(){
-      this.router.navigate(['/Nav/AddPayment']);
+      this.router.navigate(['/AddPayment']);
   }
 
   reloadData() {

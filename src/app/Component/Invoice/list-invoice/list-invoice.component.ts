@@ -164,11 +164,7 @@ $("#table_Invoice tbody").on("click", "a.editor_remove", e => {
   console.log('Clicked No, File is safe!');
 }
 })
-
-  //}
-
-  // this.DeleteInvoice(row.invoiceNo);
-  // r.row(tr).remove().draw();  
+  
 });
    
 
@@ -213,39 +209,17 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
   }
 
   updateInvoice(id: number){
-    this.router.navigate(['/Nav/UpdateInvoice', id]);
+    this.router.navigate(['/UpdateInvoice', id]);
   }
   lstpay(id: number){
-    this.router.navigate(['/Nav/ListPay', id]);
+    this.router.navigate(['/ListPay', id]);
   }
   
   gotoadd(){
-      this.router.navigate(['/Nav/AddInvoice']);
+      this.router.navigate(['/AddInvoice']);
   }
   reloadData() {
     this.Invdata=this.service.GetInvoie().subscribe((data)=>this.Invdata=data); 
  }
  
-  // public DeleteInvoice(id:number){
-  //   if (confirm('Are you sure to delete this record ?'))
-  //   {
-  //   let resp= this.service.DeleteInvoice(id);
-  //   resp.subscribe((data)=>{
-      
-  //     if(data == 1)
-  //     {
-  //       this.toastr.info('Deleted Successfully!');
-  //     }  
-  //     else
-  //     {
-  //       this.toastr.error('Something went wrong', 'Error');     
-  //     }      
-  //     this.reloadData()
-  //   });
-  //   }
-  //  }
-
-
-
-
 }

@@ -25,14 +25,21 @@
     </div>
   
 </nav> -->
-<!-- <app-root-nav>
+ <app-root-nav *ngIf="nav.visible;else Nonav" >
   <div class="container">
-    <div style="margin-top: 2%;"> -->
-      
-    <router-outlet></router-outlet>
-  <!-- </div>
+    <div style="margin: 15px 5px 10px 5px; " >       
+      <router-outlet></router-outlet>
+    </div> 
   </div>
-</app-root-nav> -->
+</app-root-nav> 
+  
+<ng-template #Nonav>
+  <router-outlet></router-outlet>
+</ng-template>
+
+
+
+
     <!-- <router-outlet></router-outlet> -->
 <!--     
     <hr/>

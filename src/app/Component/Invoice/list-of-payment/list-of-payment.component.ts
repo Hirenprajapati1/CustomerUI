@@ -206,7 +206,7 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 
 
   gotoList() {
-    this.router.navigate(["/Nav/ListInvoice"]);    
+    this.router.navigate(["/ListInvoice"]);    
    }
 
 }

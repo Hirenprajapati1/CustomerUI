@@ -71,7 +71,7 @@ export class UpdateInvoiceComponent implements OnInit {
   //
   
 
-  if(this.Count < 2 && this.Count > 0)
+  if(this.Count == 1 )
   {
     if(this.inv.invoiceNo == "" ||this.inv.invoiceNo == undefined || this.inv.invoiceNo.trim() == ""   )
     {
@@ -119,7 +119,7 @@ export class UpdateInvoiceComponent implements OnInit {
 
 
   gotoList() {
-    this.router.navigate(["/Nav/ListInvoice"]);    
+    this.router.navigate(["/ListInvoice"]);    
    }
 
 }

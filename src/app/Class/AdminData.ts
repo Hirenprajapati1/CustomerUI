@@ -6,7 +6,7 @@ export class AdminData{
     region:string;
     password:string;
     email:string;
-    contactNo:number;
+    contactNo:string;
     createdDate:string;
     modifyDate:string;
   }

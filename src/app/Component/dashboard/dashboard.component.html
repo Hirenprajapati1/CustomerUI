@@ -24,7 +24,7 @@
     <!-- Info boxes -->
     <div class="row">
     <!-- /.col -->
-    <div class="col-12 col-sm-6 col-md-4" routerLink="/Nav/ListCustomer">
+    <div class="col-12 col-sm-6 col-md-4" routerLink="/ListCustomer">
       <div class="info-box mb-3">
         
         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -92,7 +92,7 @@
     </div>
     <!-- /.col -->
 
-    <div class="col-12 col-sm-6 col-md-4" routerLink="/Nav/ListInvoice">
+    <div class="col-12 col-sm-6 col-md-4" routerLink="/ListInvoice">
       
       <div class="info-box mb-3">
         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
@@ -138,7 +138,7 @@
       <!-- fix for small devices only -->
       <div class="clearfix hidden-md-up"></div>
 
-      <div class="col-12 col-sm-6 col-md-4" routerLink="/Nav/ListPayment">
+      <div class="col-12 col-sm-6 col-md-4" routerLink="/ListPayment">
         <div class="info-box mb-3">
           <span class="info-box-icon bg-info elevation-1"><mat-icon > attach_money</mat-icon></span>
   
@@ -196,6 +196,94 @@
 
     </div>
     <!-- /.row -->
+
+
+    <div class="row">
+      <div class=" col-md-12">
+   
+      <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Charts</h5>
+          </div>
+              <!-- [width]="1000" -->
+              <div class="row">
+   
+              <div class=" col-md-6">
+                <div class="info-box ">
+                  <google-chart  
+                  #chart 
+                  [width]="400" 
+                  [height]="150"
+                  [title]="Chart.titleTotel"
+                  [type]="Chart.type"
+                  [data]="TotelSalesAndPaymentCollection"
+                  [columns]="Chart.columns"
+                  [options]="Chart.options"
+                >
+                </google-chart>
+                  </div>
+                </div>   
+                <div class=" col-md-6">
+                  <div class="info-box ">
+                    <google-chart  
+                    #chart 
+                    [height]="150"
+                    [title]="Chart.titlePieTotel"
+                    [type]="Chart.typepie"
+                    [data]="TotelSalesAndPaymentCollectionpie"
+                    [columns]="Chart.columns"
+                    [options]="Chart.options"
+                  >
+                  </google-chart>
+                    </div>
+                  </div>   
+                <div class=" col-md-6">
+                  <div class="info-box ">
+                  <google-chart  
+                  #chart 
+                  [width]="400" 
+                  [height]="150"
+                  [title]="Chart.titleYearly"
+                  [type]="Chart.type"
+                  [data]="ThisYearSalesAndPaymentCollection"
+                  [columns]="Chart.columns"
+                  [options]="Chart.options"
+                >
+                </google-chart>
+                </div>
+                </div>
+                <div class=" col-md-6">
+                  <div class="info-box ">
+                  <google-chart  
+                  #chart 
+                  [width]="400" 
+                  [height]="150"
+                  [title]="Chart.titleMonthly"
+                  [type]="Chart.type"
+                  [data]="ThisMonthSalesAndPaymentCollection"
+                  [columns]="Chart.columns"
+                  [options]="Chart.options"
+                >
+                </google-chart>
+                  </div>
+                </div>
+              </div>           
+           
+              </div>
+       
+    </div>  
+  </div>  
+    
+
+
+
+        
+  
+
+
+
+
+
 
     <div class="row">
       <div class="col-md-12">
@@ -333,9 +421,9 @@
     </div>
     <!-- /.row -->
     <div class="row">
-      <div class="col-md-12" >
+      <!-- <div class="col-md-12" >
       <app-list-report></app-list-report>
-    </div>
+    </div> -->
     <!-- <div style="display: block;">
       <canvas baseChart width="400" height="400"
         [datasets]="lineChartData"
@@ -347,17 +435,19 @@
       </canvas>
     </div> -->
         <!-- [options]="lineChartOptions" -->
-        <!-- <div class="chart-wrapper">
+         <!-- <div class="chart-wrapper">
           <canvas baseChart 
               [datasets]="lineChartData" 
               [labels]="lineChartLabels" 
-              [options]="lineChartOptions"
               [colors]="lineChartColors" 
               [legend]="lineChartLegend" 
               [chartType]="lineChartType" 
               [plugins]="lineChartPlugins">
           </canvas>
-      </div> -->
+      </div>  -->
+
+
+
     </div>
     <!-- Main row -->
   </div><!--/. container-fluid -->

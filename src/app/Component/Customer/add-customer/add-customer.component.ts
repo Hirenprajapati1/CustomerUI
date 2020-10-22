@@ -175,7 +175,7 @@ export class AddCustomerComponent implements OnInit {
    }
 
     gotoList() {
-     this.router.navigate(["/Nav//ListCustomer"]);    
+     this.router.navigate(["/ListCustomer"]);    
     }
 
 } 
