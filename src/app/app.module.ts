@@ -1,4 +1,4 @@
-import { MyFilterPipe } from './Class/my-filter-pipe';
+//import { MyFilterPipe } from './Class/my-filter-pipe';
 import { ChartsModule } from 'ng2-charts';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -83,7 +83,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     NotificationsDropdownMenuComponent,
     MessagesDropdownMenuComponent,
     EditProfileComponent,
-    MyFilterPipe
+//    MyFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -112,7 +112,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MatDialogModule, 
     MatRadioModule,
     MatCheckboxModule,
-    ChartsModule,
+    //ChartsModule,
     Ng2SearchPipeModule,
     GoogleChartsModule,
     //MatMomentDateModule,

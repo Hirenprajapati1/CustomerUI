@@ -1,3 +1,4 @@
+import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { CustomerData } from './../../../Class/CustomerData';
 import { CustomerServiceService } from './../../../Services/customer-service.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,9 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-customer.component.css']
 })
 export class UpdateCustomerComponent implements OnInit {
+  form = new FormGroup({
+    customerNo: new FormControl('',Validators.required),
+    customerName: new FormControl('',Validators.required),
+  })
+
+
   Cust : CustomerData= new CustomerData();
   id: number;
-  flag:boolean;  
   constructor(private toastr:ToastrService,private route: ActivatedRoute,private router: Router,
     private service:CustomerServiceService) { }
 
@@ -29,14 +35,8 @@ export class UpdateCustomerComponent implements OnInit {
   public UpdateCustomer(){
     this.Cust.modifyBy =localStorage.getItem('username');
   
-    this.flag=true;
-    if( this.Cust.customerName == ""  || this.Cust.customerName == undefined || this.Cust.customerName.trim() =="")
+  
     {
-      this.toastr.warning('Customer Name Is Requried','Requried Field!.');   
-      this.flag=false;
-    }
- 
-    if(this.flag== true){
      this.service.UpdateCustomer(this.id, this.Cust)
      .subscribe(data =>{ console.log(data), error => console.log(error)   
     if(data == 1)

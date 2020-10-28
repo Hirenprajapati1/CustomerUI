@@ -1,3 +1,5 @@
+import { logging } from 'protractor';
+import { HelperService } from './helper.service';
 import { tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from './../../environments/environment';
@@ -11,18 +13,19 @@ var tokenHeader;
 export class ReportServiceService {
 
 
-  constructor(private toastr: ToastrService,private router: Router,private http:HttpClient) { }
+  constructor(private toastr: ToastrService,private router: Router,
+    private helper: HelperService,private http:HttpClient) { }
   GetToken()
   { 
        tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')})
   }
   
-  RemoveToken(){
-    localStorage.removeItem('token');
-    this.toastr.info("please Login Again!");
-  //  this.LoginAgaintoster();
-    this.router.navigateByUrl('/LoginPath');
-  }
+  // RemoveToken(){
+  //   localStorage.removeItem('token');
+  //   this.toastr.info("please Login Again!");
+  // //  this.LoginAgaintoster();
+  //   this.router.navigateByUrl('/LoginPath');
+  // }
   
   // LoginAgaintoster()
   // { 
@@ -40,7 +43,7 @@ export class ReportServiceService {
           succ => { },
           err => {
               if (err.status == 401){
-              this.RemoveToken()
+              this.helper.Logout()
               }   
           }
       )
@@ -56,7 +59,7 @@ export class ReportServiceService {
           succ => { },
           err => {
               if (err.status == 401){
-              this.RemoveToken()
+              this.helper.Logout()
               }   
           }
       )
@@ -72,7 +75,7 @@ export class ReportServiceService {
           succ => { },
           err => {
               if (err.status == 401){
-              this.RemoveToken()
+              this.helper.Logout()
               }   
           }
       )

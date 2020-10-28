@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GeneralSettingsService } from './../../../Services/general-settings.service';
 import { InvoiceServiceService } from './../../../Services/invoice-service.service';
 import { CustomerServiceService } from './../../../Services/customer-service.service';
@@ -14,6 +15,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-payment.component.css']
 })
 export class AddPaymentComponent implements OnInit {
+  form = new FormGroup({
+    paymentNo: new FormControl('',Validators.required),
+    invoiceNo: new FormControl('',Validators.required),
+    customerNo: new FormControl('',Validators.required),
+    paymentAmount: new FormControl('',Validators.required),
+    paymentDate: new FormControl('',Validators.required),
+  })
+ 
   pay : PaymentData = new PaymentData();
   message :any;
   message1 :any;
@@ -21,8 +30,8 @@ export class AddPaymentComponent implements OnInit {
   Invoice1:any;
   Invoice2:any;
   Customer1:any;
-  flag:boolean;
-  Count:number;
+  // flag:boolean;
+  // Count:number;
   Pay1:any;
   a:any;
   id:number;
@@ -55,6 +64,8 @@ export class AddPaymentComponent implements OnInit {
   GetInvoiceNoByCustomerNo(){
     this.Invoice2=this.service.GetInvoiceNoByCustomerNo(this.temp).subscribe((data)=>this.Invoice2=data);    
 this.show2=true;
+this.show1=false;
+this.pay.invoiceNo=undefined;
   }
 
    GetInvoiceDetailsByNo(){
@@ -70,74 +81,27 @@ this.show2=true;
  
 
   AddPayment()
-  {
+  {  
+     if(this.pay.paymentAmount <= 0){
+    this.toastr.warning('Payment Amount should be more then 0 requried');   
+     }
+  else
+    {
     this.pay.CreatedBy = localStorage.getItem('username');
     if(this.GS[0].autoPaymentNo == true){
-      this.pay.paymentNo = undefined;
+      this.pay.paymentNo ='P'+ this.Pay1[0].paymentNo;
     this.AddPayment1();
     }
     else
     {
       this.AddPayment2();
-    }
+    }}
   }
 
 
 
 
   AddPayment2(){
-    this.flag=true;
-    this.Count=0;
-
-      if(this.pay.invoiceNo == "" ||this.pay.invoiceNo == undefined || this.pay.invoiceNo.trim() == ""   )
-      {
-        this.Count++;
-      }
-        if(this.pay.paymentNo == "" ||this.pay.paymentNo == undefined || this.pay.paymentNo.trim() == "" )
-        {
-          this.Count++;
-        }
-      if(this.pay.paymentAmount == null || this.pay.paymentAmount == undefined  )
-      {
-        this.Count++;
-      }
-      else if(this.pay.paymentAmount < 1 )
-      {
-        this.Count++;
-      }
-
-      if(this.Count >=2){
-        this.toastr.warning('Please Fill All Required Fields','Requried Field!.');   
-        this.flag=false;      
-      }
-
-//
-  if(this.Count == 1)
-  {
-    if(this.pay.invoiceNo == "" ||this.pay.invoiceNo == undefined || this.pay.invoiceNo.trim() == ""   )
-    {
-      this.toastr.warning('Invoice No Is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-    if(this.pay.paymentNo == "" ||this.pay.paymentNo == undefined || this.pay.paymentNo.trim() == "" )
-    {
-      this.toastr.warning('Payment No is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-    if(this.pay.paymentAmount == null || this.pay.paymentAmount == undefined  )
-    {
-      this.toastr.warning('Payment Amount is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-    else if(this.pay.paymentAmount < 1 )
-    {
-      this.toastr.warning('Payment Amount Should be More Then 0 Requried','Minimam Value Requried!.');   
-      this.flag=false;
-    }
-  }
-    
-
-    if(this.flag==true)
     {  
       this.DuePayment=(this.Invoice[0].invoiceAmount - this.Invoice[0].paymentAmount);
       if(this.DuePayment < this.pay.paymentAmount)
@@ -194,70 +158,8 @@ Payment2WithoutToster()
 
 
   AddPayment1(){
-    this.flag=true;
-    this.Count=0;
-
-  //     if(this.pay.paymentNo==undefined){
-  // //      this.Pay1=this.service.GetPaymentNo().subscribe((data)=>this.Pay1=data);    
-  // this.pay.paymentNo==(this.Pay1[0])
-  // this.a == (this.Pay1.paymentNo)
-  // console.log(this.Pay1[0].paymentNo);
-  // console.log(this.a);
-  //     }
-      
-
-      if(this.pay.invoiceNo == "" ||this.pay.invoiceNo == undefined || this.pay.invoiceNo.trim() == ""   )
-      {
-        this.Count++;
-      }
-      if(this.pay.paymentNo != undefined)
-      {
-        if(this.pay.paymentNo == "" ||this.pay.paymentNo == undefined || this.pay.paymentNo.trim() == "" )
-        {
-          this.Count++;
-        }
-      }
-      if(this.pay.paymentAmount == null || this.pay.paymentAmount == undefined  )
-      {
-        this.Count++;
-      }
-      else if(this.pay.paymentAmount < 1 )
-      {
-        this.Count++;
-      }
-
-      if(this.Count >=2){
-        this.toastr.warning('Please Fill All Required Fields','Requried Field!.');   
-        this.flag=false;      
-      }
-
-//
-  if(this.Count == 1)
   {
-    if(this.pay.invoiceNo == "" ||this.pay.invoiceNo == undefined || this.pay.invoiceNo.trim() == ""   )
-    {
-      this.toastr.warning('Invoice No Is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-    if(this.pay.paymentNo !=undefined){
-    if(this.pay.paymentNo == "" ||this.pay.paymentNo == undefined || this.pay.paymentNo.trim() == "" )
-    {
-      this.toastr.warning('Payment No is Requried','Requried Field!.');   
-      this.flag=false;
-    }}
-    if(this.pay.paymentAmount == null || this.pay.paymentAmount == undefined  )
-    {
-      this.toastr.warning('Payment Amount is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-    else if(this.pay.paymentAmount < 1 )
-    {
-      this.toastr.warning('Payment Amount Should be More Then 0 Requried','Minimam Value Requried!.');   
-      this.flag=false;
-    }
-  }
-    if(this.flag==true)
-    {
+    this.pay.paymentNo==this.Pay1[0].paymentNo;
       this.DuePayment=(this.Invoice[0].invoiceAmount - this.Invoice[0].paymentAmount);
       if(this.DuePayment < this.pay.paymentAmount)
       {
@@ -277,6 +179,7 @@ Payment2WithoutToster()
          } 
          else if (result.isDismissed) {
         this.toastr.warning('Payment is Canceled!.');  
+        this.pay.paymentNo=this.Pay1[0].paymentNo;
         console.log('Payment is not Added');
       }
   })

@@ -21,6 +21,10 @@ export class AuthenticationService {
   AddAdmin(FormData){
     return this.http.post(environment.CustUrl + 'Authentication/AddAdmin',FormData)
   }
+
+  UpadeAdmin(FormData){
+    return this.http.post(environment.CustUrl + 'Authentication/UpdateAdmin',FormData)
+  }
   
 
   GetAdminByID(name: string): Observable<any>{

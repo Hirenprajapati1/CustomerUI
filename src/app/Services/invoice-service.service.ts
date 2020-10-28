@@ -1,3 +1,4 @@
+import { HelperService } from './helper.service';
 import { tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentData } from './../Class/PaymentData';
@@ -13,18 +14,19 @@ var tokenHeader;
 })
 export class InvoiceServiceService {
 
-  constructor(private toastr: ToastrService,private router: Router,private http:HttpClient) { }
+  constructor(private toastr: ToastrService,private router: Router,
+    private helper: HelperService,private http:HttpClient) { }
   GetToken()
   { 
        tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')})
   }
   
-  RemoveToken(){
-    localStorage.removeItem('token');
-    this.toastr.info("please Login Again!");
-  //  this.LoginAgaintoster();
-    this.router.navigateByUrl('/LoginPath');
-  }
+//   RemoveToken(){
+//     localStorage.removeItem('token');
+//     this.toastr.info("please Login Again!");
+//   //  this.LoginAgaintoster();
+//     this.router.navigateByUrl('/LoginPath');
+//   }
   
   // LoginAgaintoster()
   // { 
@@ -43,7 +45,7 @@ export class InvoiceServiceService {
           succ => { },
           err => {
               if (err.status == 401){
-              this.RemoveToken()
+              this.helper.Logout()
               }   
           }
       )
@@ -58,7 +60,7 @@ export class InvoiceServiceService {
          succ => { },
          err => {
              if (err.status == 401){
-             this.RemoveToken();
+             this.helper.Logout();
              }   
          }
      )
@@ -73,7 +75,7 @@ export class InvoiceServiceService {
          succ => { },
          err => {
              if (err.status == 401){
-             this.RemoveToken();
+             this.helper.Logout();
              }   
          }
      )
@@ -91,7 +93,7 @@ export class InvoiceServiceService {
          succ => { },
          err => {
              if (err.status == 401){
-             this.RemoveToken();
+             this.helper.Logout();
              }   
          }
      )
@@ -106,7 +108,7 @@ export class InvoiceServiceService {
          succ => { },
          err => {
              if (err.status == 401){
-             this.RemoveToken();
+             this.helper.Logout();
              }   
          }
      )
@@ -123,7 +125,7 @@ export class InvoiceServiceService {
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -139,7 +141,7 @@ AddInvoiceNoByUser(invoice){
        succ => { },
        err => {
            if (err.status == 401){
-           this.RemoveToken()
+           this.helper.Logout()
            }   
        }
    )
@@ -156,7 +158,7 @@ GetInvoiceById(id: number): Observable<any>{
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -172,7 +174,7 @@ UpdateInvioce(id: number,Inv: InvoiceData){
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -188,12 +190,11 @@ UpdateInvioce(id: number,Inv: InvoiceData){
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
 )
 }
-
 
 }

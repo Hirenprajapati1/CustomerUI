@@ -6,7 +6,7 @@
            
                <h1 class="text-center"><mat-label >Add Customer</mat-label></h1>
                 
-                <form >
+               <form [formGroup]="form" >
                         <mat-form-field appearance="fill" class=" example-full-width1 " *ngIf="GS[0].autoCustomerNo">
                             <mat-label><span class="req">* </span>Customer No</mat-label>
                             
@@ -15,9 +15,16 @@
                              [(ngModel)]="Cust1.customerNo"
                              [ngModel]="Cust2[0].customerNo"
                              name="customerNo" id="txt"
-                             placeholder="Enter Customer No"> 
-                             <span matPrefix>C</span>
-                     
+                             placeholder="Enter Customer No"
+                             formControlName="customerNo"
+                             [ngClass]="{'is-invalid': form.get('customerNo')
+                            .touched && form.get('customerNo').invalid}"
+                        >
+                        <mat-error class="invalid-feedback">
+                            CustomerNo is required 
+                         </mat-error>            
+                                  <span matPrefix>C</span>      
+
                         </mat-form-field>
                   
                         <mat-form-field appearance="fill" class="example-full-width1"*ngIf="!GS[0].autoCustomerNo">
@@ -26,7 +33,15 @@
                             <input matInput  
                              [(ngModel)]="Cust1.customerNo"
                              name="customerNo" id="txt"
-                             placeholder="Enter Customer No"> 
+                             placeholder="Enter Customer No" 
+                             formControlName="customerNo"
+                             [ngClass]="{'is-invalid': form.get('customerNo')
+                            .touched && form.get('customerNo').invalid}"
+                        >
+                        <mat-error class="invalid-feedback">
+                            CustomerNo is required 
+                         </mat-error>
+                
                              <!-- <span matPrefix>C&nbsp;</span> -->
                        
                         </mat-form-field>
@@ -43,16 +58,24 @@
                             <mat-label><span class="req">* </span>Customer Name</mat-label>
                                 <input matInput [(ngModel)]="Cust1.customerName"
                                  name="customerName" id="customerName"
-                                 placeholder="Enter Customer Name">
+                                 placeholder="Enter Customer Name"
+                                 formControlName="customerName"
+                                 [ngClass]="{'is-invalid': form.get('customerName')
+                                .touched && form.get('customerName').invalid}"
+                            >
+                            <mat-error class="invalid-feedback">
+                                Customer Name is required 
+                             </mat-error>
+                   
                         </mat-form-field>
                     
                     <div class=" btn-group" style="padding-left:10% ;">
-                        <input class="btn btn-success" type="submit" name="submit_reg" value="Submit" 
+                        <input class="btn btn-success" [disabled]="!form.valid" type="submit" name="submit_reg" value="Submit" 
                         (click)="AddCustomer()">
                         <input (click)="gotoList()" class = "btn btn-warning"routerLink="/GetEmployeePath"type="button" value="Goto List">            
                     </div>
                     
-                <router-outlet></router-outlet>
+                <!-- <router-outlet></router-outlet> -->
                </form>
         </mat-card>
 

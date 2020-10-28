@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-offset-3">
             <mat-card >
-                <form>
+                <form [formGroup]="form" >
                     <h1 class="text-center"><mat-label >Update Customer</mat-label></h1>
  
                     <mat-form-field appearance="fill" class="example-full-width">
@@ -10,19 +10,28 @@
                             <input matInput readonly
                              [(ngModel)]="Cust.customerNo"
                               name="customerNo" id="txt"
-                            placeholder="Enter Customer No">
+                            placeholder="Enter Customer No"
+                            formControlName="customerNo"
+                            >
                     </mat-form-field>
-
 
                     <mat-form-field appearance="fill" class="example-full-width">
                         <mat-label><span class="req">* </span>Customer Name</mat-label>
                             <input matInput [(ngModel)]="Cust.customerName"
                              name="customerName" id="customerName"
-                             placeholder="Enter Customer Name">
+                             placeholder="Enter Customer Name"
+                             formControlName="customerName"
+                             [ngClass]="{'is-invalid': form.get('customerName')
+                            .touched && form.get('customerName').invalid}"
+                        >
+                        <mat-error class="invalid-feedback">
+                            Customer Name is required 
+                         </mat-error>
+
                     </mat-form-field>
                          
                     <div class=" btn-group" style="padding-left:10% ;">
-                        <input class="btn btn-success" type="Submit" name="submit_reg" value="submit" 
+                        <input class="btn btn-success"[disabled]="!form.valid" type="Submit" name="submit_reg" value="submit" 
                         (click)="UpdateCustomer()">
                         <input (click)="gotoList()" class = "btn btn-warning"routerLink="/GetEmployeePath"type="button" value="Goto List">            
                     </div>

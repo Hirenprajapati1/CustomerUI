@@ -1,3 +1,5 @@
+import { count } from 'rxjs/operators';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { CustomerServiceService } from './../../../Services/customer-service.service';
 import { InvoiceServiceService } from './../../../Services/invoice-service.service';
 import { PaymentData } from './../../../Class/PaymentData';
@@ -13,6 +15,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./update-payment.component.css']
 })
 export class UpdatePaymentComponent implements OnInit {
+  form = new FormGroup({
+    paymentNo: new FormControl('',Validators.required),
+    customerNo: new FormControl('',Validators.required),
+    invoiceNo: new FormControl('',Validators.required),
+    paymentAmount: new FormControl('',Validators.required),
+    paymentDate: new FormControl('',Validators.required),
+  })
   pay : PaymentData= new PaymentData();
   id: number;
   Invoice1:any;
@@ -34,7 +43,9 @@ export class UpdatePaymentComponent implements OnInit {
     private service: PaymentServiceService,private Invservice:InvoiceServiceService) { }
 
   ngOnInit(): void {
-    this.Invoice1=this.Invservice.GetInvoie().subscribe((data)=>this.Invoice1=data);    
+    this.Invoice1=this.Invservice.GetInvoie().subscribe((data)=>{this.Invoice1=data
+    this.GetInvoiceDetailsByNo();
+    });    
     this.Customer1=this.Custservice.GetCustomer().subscribe((data)=>this.Customer1=data);    
 
     this.id = this.route.snapshot.params['id'];
@@ -52,12 +63,28 @@ export class UpdatePaymentComponent implements OnInit {
     }, error => console.log(error)); 
   
   }
-
+falg :boolean=true;
+//count1:number=0;
   GetInvoiceNoByCustomerNo(){
     this.temp=this.CustNo[0].customerNo;
     this.Invoice2=this.service.GetInvoiceNoByCustomerNo(this.temp).subscribe((data)=>{this.Invoice2=data
-      this.GetInvoiceDetailsByNo()});    
-this.show2=true;
+  //  if(this.count1<1)
+    if(this.falg == true)
+    {
+      this.GetInvoiceDetailsByNo();
+    }
+    });
+ //    this.pay.invoiceNo=undefined;
+  // if(this.count1 >= 1)
+  if(this.falg == false)
+   {
+     this.pay.invoiceNo=undefined;
+     this.show1=false;
+   }else{
+    this.show2=true;
+   }
+ this.falg=false;
+//this.count1 =this.count1+1;
   }
 
   GetInvoiceDetailsByNo(){
@@ -79,73 +106,15 @@ this.show2=true;
 }
 
   public UpdatePayment(){
+   
+    if(this.pay.paymentAmount <= 0)
+    {
+      this.toastr.warning('Payment Amount should be more then 0 requried');   
+    }
+    else
+    {
     this.pay.modifyBy = localStorage.getItem('username');
- 
-    this.flag=true;
-    this.Count=0;
-
-//
-      if(this.pay.invoiceNo == "" ||this.pay.invoiceNo == undefined || this.pay.invoiceNo.trim() == ""   )
-      {
-        this.Count++;
-      }
-      if(this.pay.paymentNo == "" ||this.pay.paymentNo == undefined || this.pay.paymentNo.trim() == "" )
-      {
-        this.Count++;
-      }   
-      if(this.pay.paymentDate.toString() == "" || this.pay.paymentDate==null || this.pay.paymentDate==undefined  )
-      {
-        this.Count++;
-      }
-      if(this.pay.paymentAmount == null || this.pay.paymentAmount == undefined  )
-      {
-        this.Count++;
-      }
-      else if(this.pay.paymentAmount < 1 )
-      {
-        this.Count++;
-      }
-      if(this.Count > 1){
-        this.toastr.warning('Please Fill All Required Fields','Requried Field!.');   
-        this.flag=false;      
-      }
-
-
-//
-  if(this.Count == 1)
-  {
-    if(this.pay.invoiceNo == "" ||this.pay.invoiceNo == undefined || this.pay.invoiceNo.trim() == ""   )
-    {
-      this.toastr.warning('Invoice No Is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-    if(this.pay.paymentNo == "" ||this.pay.paymentNo == undefined || this.pay.paymentNo.trim() == "" )
-    {
-      this.toastr.warning('Payment No is Requried','Requried Field!.');   
-      this.flag=false;
-    }   
-    if(this.pay.paymentDate.toString() == "" || this.pay.paymentDate==null || this.pay.paymentDate==undefined  )
-    {
-      this.toastr.warning('Invoice Date is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-
-    if(this.pay.paymentAmount == null || this.pay.paymentAmount == undefined  )
-    {
-      this.toastr.warning('Payment Amount is Requried','Requried Field!.');   
-      this.flag=false;
-    }
-    else if(this.pay.paymentAmount < 1 )
-    {
-      this.toastr.warning('Payment Amount Should be More Then 0 Requried','Minimam Value Requried!.');   
-      this.flag=false;
-    }
-  }
-    if(this.flag==true)
-    {     
-
 //  this.GetPaymentById2()
-//
       this.DuePayment=(this.Invoice[0].invoiceAmount - this.Invoice[0].paymentAmount) +this.Old.paymentAmount;
       if(this.DuePayment < this.pay.paymentAmount)
       {
@@ -200,7 +169,6 @@ UpdatePaymentWithoutToster(){
  }
 });
 }
-
 
   gotoList() {
     this.router.navigate(["/ListPayment"]);    

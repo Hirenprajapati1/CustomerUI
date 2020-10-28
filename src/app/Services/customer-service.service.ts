@@ -1,3 +1,4 @@
+import { HelperService } from './helper.service';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerData } from './../Class/CustomerData';
 import { environment } from './../../environments/environment';
@@ -12,19 +13,20 @@ var tokenHeader;
 })
 export class CustomerServiceService {
 
-  constructor(private toastr: ToastrService,private router: Router,private http:HttpClient) { }
+  constructor(private toastr: ToastrService,private router: Router,
+    private helper: HelperService,private http:HttpClient) { }
 
 GetToken()
 { 
      tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')})
 }
 
-RemoveToken(){
-  localStorage.removeItem('token');
-  this.toastr.info("please Login Again!");
-//  this.LoginAgaintoster();
-  this.router.navigateByUrl('/LoginPath');
-}
+// RemoveToken(){
+//   localStorage.removeItem('token');
+//   this.toastr.info("please Login Again!");
+// //  this.LoginAgaintoster();
+//   this.router.navigateByUrl('/LoginPath');
+// }
 
 // LoginAgaintoster()
 // { 
@@ -43,7 +45,7 @@ RemoveToken(){
          succ => { },
          err => {
              if (err.status == 401){
-             this.RemoveToken()
+             this.helper.Logout()
              }   
          }
      )
@@ -60,7 +62,7 @@ GetCustomerNo(){
        succ => { },
        err => {
            if (err.status == 401){
-           this.RemoveToken();
+           this.helper.Logout();
            }   
        }
    )
@@ -77,7 +79,7 @@ GetCustomerNo(){
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -92,7 +94,7 @@ AddCustomerNoByUser(Customer){
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -111,7 +113,7 @@ GetCustomerById(id: number): Observable<any>{
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -126,7 +128,7 @@ GetCustomerById(id: number): Observable<any>{
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -142,7 +144,7 @@ UpdateCustomer(id: number,Cust: CustomerData){
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )

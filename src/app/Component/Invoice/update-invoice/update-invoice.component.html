@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 col-sm-offset-3">
         <mat-card>
-              <form>
+            <form [formGroup]="form" >
                 <h1 class="text-center"><mat-label >Update Invoice</mat-label></h1>
 
                 <!-- <div class="form-group">
@@ -14,22 +14,35 @@
                     <mat-label><span class="req">* </span>Invoice No</mat-label>                  
                     <input matInput  readonly
                     [(ngModel)]="inv.invoiceNo" 
-                    name="invoiceNo" id="txt"
-                    placeholder="Enter Invoice No"> 
-                    <span matPrefix></span>      
+                    name="invoiceNo" id="invoiceNo"
+                    placeholder="Enter Invoice No"
+                    formControlName="invoiceNo"
+               >  
                 </mat-form-field>
       
 
                 <mat-form-field appearance="fill" class=" example-full-width1 ">
-                    <mat-select name="competence_1_name" [(ngModel)]="inv.customerNo" name="customerNo">
+                    <mat-select
+                     [(ngModel)]="inv.customerNo" name="customerNo"
+                    placeholder="Please select Customer"
+                    formControlName="customerNo"
+                    [ngClass]="{'is-invalid': form.get('customerNo')
+                   .touched && form.get('customerNo').invalid}"
+                    >
                       <mat-option>Select customerName</mat-option>
                       <mat-option 
                       *ngFor="let cust of Customer1" 
                       [ngValue]='cust.customerNo'
-                       value="{{cust.customerNo }}">
+                       value="{{cust.customerNo }}"
+                    >   
                        {{cust.customerName}}   &nbsp; &nbsp;  ({{cust.customerNo}})</mat-option>                 
                     </mat-select>
+
                     <mat-label><span class="req">* </span> Customer:</mat-label>
+                    <mat-error class="invalid-feedback">
+                        Customer is required 
+                        </mat-error>
+                      
                   </mat-form-field>
                   
                   <!-- <div class="form-group">
@@ -46,7 +59,15 @@
                         <input matInput type="number" min="1" step="0.01"
                         [(ngModel)]="inv.invoiceAmount" name="invoiceAmount"
                         id="invoiceAmount"
-                        placeholder="Enter Invoice Amount">
+                        placeholder="Enter Invoice Amount"                       
+                        formControlName="invoiceAmount"
+                        [ngClass]="{'is-invalid': form.get('invoiceAmount')
+                       .touched && form.get('invoiceAmount').invalid}"
+                   >
+                   <mat-error class="invalid-feedback">
+                    Invoice Amount is required 
+                    </mat-error>
+
                 </mat-form-field>
 
                 <!-- <div class="form-group">
@@ -63,7 +84,15 @@
                         [(ngModel)]="inv.invoiceDate"
                         [ngModel]="inv.invoiceDate | date:'yyyy-MM-dd'"
                          name="paymentDate" id="txt1"
-                       placeholder="Enter Invoice Date"/>   
+                       placeholder="Enter Invoice Date"
+                       formControlName="invoiceDate"
+                       [ngClass]="{'is-invalid': form.get('invoiceDate')
+                      .touched && form.get('invoiceDate').invalid}"
+                  >
+                  <mat-error class="invalid-feedback">
+                    Invoice Date is required 
+                   </mat-error>
+   
                        <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                        [matDatepicker]="picker2"        
                        <mat-datepicker #picker2 color="primary"></mat-datepicker>                          -->
@@ -79,7 +108,7 @@
                 </div> -->
  
                 <div class=" btn-group " style="padding-left:10% ;">
-                    <input class="btn btn-success" type="submit" name="submit_reg" value="Submit" 
+                    <input class="btn btn-success" [disabled]="!form.valid" type="submit" name="submit_reg" value="Submit" 
                     (click)="UpdateInvioce()">
                     <input (click)="gotoList()" class = "btn btn-warning"routerLink="/GetEmployeePath"type="button" value="Goto List">            
                 </div>

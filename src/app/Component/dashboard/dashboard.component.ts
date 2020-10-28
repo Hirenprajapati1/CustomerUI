@@ -1,9 +1,10 @@
 import { ReportServiceService } from './../../Services/report-service.service';
 import { Component, OnInit } from '@angular/core';
-import { Color, Label, ThemeService } from 'ng2-charts';
+//import { Color, Label, ThemeService } from 'ng2-charts';
 //import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
-import {  ChartType, Column } from 'angular-google-charts';
+//import {  ChartType, Column } from 'angular-google-charts';
 import { templateJitUrl } from '@angular/compiler';
+import { ChartType, Column } from 'angular-google-charts';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
   TotelSalesAndPaymentCollection:any;  
   ThisMonthSalesAndPaymentCollection:any;
   ThisYearSalesAndPaymentCollection:any;
+
   //  temp1:any=[];
   // a:any=
   // [
@@ -32,14 +34,17 @@ export class DashboardComponent implements OnInit {
   //   ['Gold', 19.3,'gold','Au'],
   //   ['Platinum', 21.45,'color: #e5e4e2','Pt' ]];
   // d1: DashboardData =new DashboardData();
+  
   constructor(public service : ReportServiceService) { 
     this.Data=this.service.GetDashbordData().subscribe((data)=>{this.Data = data
-
-      this.TotelSalesAndPaymentCollectionpie=[['Payment Collection',this.Data[0].totelPaymentCollestions],['Due Payments',(this.Data[0].totelSeles-this.Data[0].totelPaymentCollestions)]];
 
       this.TotelSalesAndPaymentCollection=[['Sales',this.Data[0].totelSeles],['Payment Collection',this.Data[0].totelPaymentCollestions]];
       this.ThisMonthSalesAndPaymentCollection=[['Sales',this.Data[0].salesMonthly],['Payment Collection',this.Data[0].paymentCollestionsMonthly]];
       this.ThisYearSalesAndPaymentCollection=[['Sales',this.Data[0].salesYearly],['Payment Collection',this.Data[0].paymentCollestionsYearly]]
+
+      this.TotelSalesAndPaymentCollectionpie=[['Payment Collection',this.Data[0].totelPaymentCollestions],['Due Payments',(this.Data[0].totelSeles-this.Data[0].totelPaymentCollestions)]];
+
+  
       // var tempdata =[];
       // var tempdata1 =[];
       // var tempdata2 =[];
@@ -51,6 +56,7 @@ export class DashboardComponent implements OnInit {
       // tempdata2.push(tempdata1);
       // this.temp1=tempdata2;
       // console.log(this.temp1);
+  
     });
     
   }
@@ -67,24 +73,35 @@ export class DashboardComponent implements OnInit {
 
   public Chart = {
     titleTotel: 'Totel Sales & Payment Collections',
-    titlePieTotel: 'Totel Sales & Payment Collections',
+    titlePieTotel: 'Payment Collections & Due Payments',
     titleMonthly: 'This Month Sales & Payment Collections',
     titleYearly: 'This year Sales & Payment Collections',
     type: ChartType.BarChart,
     typepie: ChartType.PieChart,
 
-    data:[],
+   // data:[],
     //this.a,
 //    this.temp1,
-    columns: ['Element', 'Density'],
+    columns: ['Name', '$'],
     //columns: [{label:'Element', type: 'string'} , {label:'Density',type: 'number'}, { role: 'style' }, { role: 'annotation' }],
     //columns: ['Element', 'Density', { role: 'style' }, { role: 'annotation' }],
     options: {
+      'minValue': 10,
       animation: {
         duration: 1500,
         easing: 'ease-in-out',
-     //   startup: true
-      }
+        startup: true,
+      },     
+   //   vAxis: {minValue: 0}
+    // vAxis: { 
+    //     viewWindow: {
+    //         min:0
+    //     }
+    // }
+    // vAxes: {
+    //   0: {baseline: 0},
+    // },
+
     }
   };
 

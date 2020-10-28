@@ -5,7 +5,7 @@
 
     <div class="col-md-6 col-sm-offset-3 ">
         <mat-card  class="col-md-8 col-sm-offset-2 " style="background-image: url('/../assets/BG.jpg');">     
-        <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)" onclick="removeNav()">
+        <form [formGroup]="form" >
        
         <!-- <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)"> -->
             <h1 class="text-center"><mat-label >Sign In</mat-label></h1>
@@ -13,9 +13,16 @@
             <mat-form-field class="example-full-width1">
                 <mat-label><span class="req">* </span>User Name</mat-label>
                     <input matInput 
-                     #username="ngModel" name="username"
+                    name="username"
                      [(ngModel)]="formModel.username" 
-                     placeholder="Enter UserName">
+                     placeholder="Enter UserName"
+                     formControlName="username"
+                     [ngClass]="{'is-invalid': form.get('username')
+                    .touched && form.get('username').invalid}"
+                >
+                <mat-error class="invalid-feedback">
+                    Username is required 
+                 </mat-error>
             </mat-form-field>
 
             <!-- <label>Username</label>
@@ -24,20 +31,28 @@
             <mat-form-field class="example-full-width1">
                 <mat-label><span class="req">* </span>Password</mat-label>
                     <input matInput type="password"
-                    placeholder="password"#password="ngModel"
-                    name="password"[(ngModel)]="formModel.password" >                    
+                    placeholder="password"
+                    name="password"[(ngModel)]="formModel.password"
+                    formControlName="password"
+                    [ngClass]="{'is-invalid': form.get('password')
+                   .touched && form.get('password').invalid}"
+               >
+               <mat-error class="invalid-feedback">
+                   Password is required 
+                </mat-error>
+                   
             </mat-form-field>
 
              <!-- <label>Password</label>
             <input type="password" placeholder="password"class="form-control" #password="ngModel" name="password" [(ngModel)]="formModel.password" required> -->
      
             <div class="example-full-width1 text-center " style="margin-top: 2%;">
-            <button type="submit" class="btn btn-lg btn-primary btn-block">Sign In</button>
+            <button type="submit"[disabled]="!form.valid" (click)="onSubmit()" class="btn btn-lg btn-primary btn-block">Sign In</button>
             <input (click)="gotoRegistration()" class =" btn btn-link"type="button" value="No Account? Sign Up!">            
             
             </div>
         </form>
-         </mat-card>
+        </mat-card>
     </div>
 </div>
 </div>

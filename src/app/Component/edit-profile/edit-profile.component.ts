@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from './../../Services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { AdminData } from './../../Class/AdminData';
@@ -10,6 +11,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
+  form = new FormGroup({
+    firstName: new FormControl('',Validators.required),
+    lastName: new FormControl('',Validators.required),
+    username: new FormControl('',Validators.required),
+    contactNo: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),  
+    emailid: new FormControl('',[Validators.required, Validators.email]),
+    gender: new FormControl('',Validators.required),
+    password1: new FormControl('',Validators.required)
+    // region: new FormControl('',Validators.required)
+  })
+
+
   Admin: AdminData =new AdminData();
   message :any;
   name: string=localStorage.getItem('username');
@@ -30,7 +44,7 @@ export class EditProfileComponent implements OnInit {
     }, error => console.log(error)); 
   }
 
-  Regians=["North","South","East","West"]
+  //Regians=["North","South","East","West"]
   // Regians=[
   //   {
   //     "key":"North",
@@ -59,22 +73,22 @@ export class EditProfileComponent implements OnInit {
     console.log(this.selectedRegians)
   }
 
-  Registration()
+  UpadeAdmin()
   {
-    this.Admin.region=this.selectedRegians.toString();
-    console.log(this.Admin.region);
-      let resp=this.service.AddAdmin(this.Admin);
+    //this.Admin.region=this.selectedRegians.toString();
+    //console.log(this.Admin.region);
+      let resp=this.service.UpadeAdmin(this.Admin);
       resp.subscribe((data)=>{(this.message=data)
   
       if(data >= 1)
       {
         this.toastr.success('Profile is Updated Successfully!.');
-        this.router.navigate(["/LoginPath"]);    
+        this.router.navigate(["/DashBoard"]);    
  
       }
       else if( data == -1)
       {
-        this.toastr.warning('UserName is already exists','Failed.');
+        this.toastr.warning('Please enter correct password','Failed.');
       }
       else{
         this.toastr.error('Something went wrong', 'Error');

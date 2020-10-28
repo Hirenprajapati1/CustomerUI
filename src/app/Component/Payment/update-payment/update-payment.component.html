@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 col-sm-offset-3">
         <mat-card>
-              <form>
+            <form [formGroup]="form" >
                 <h1 class="text-center"><mat-label >Update Payment</mat-label></h1>   
 
                 <mat-form-field  appearance="fill"class=" example-full-width1 ">
@@ -10,7 +10,9 @@
                     type="text" 
                     [(ngModel)]="pay.paymentNo" readonly
                      name="paymentNo" id="txt"
-                    placeholder="Enter Payment No"> 
+                    placeholder="Enter Payment No"
+                    formControlName="paymentNo"
+                    > 
                      <span matPrefix></span>      
                 </mat-form-field>
 
@@ -21,7 +23,8 @@
                     </div> -->
         <!-- {{CustNo[0].customerNo}} -->
                     <mat-form-field appearance="fill" class=" example-full-width1 ">
-                        <mat-select  name="customerNo" [(ngModel)]="CustNo[0].customerNo" >
+                        <mat-select  name="customerNo" [(ngModel)]="CustNo[0].customerNo" 
+                        formControlName="customerNo">
                           <mat-option disabled >Select Customer</mat-option>
                           <mat-option 
                           *ngFor="let cust of Customer1" 
@@ -36,7 +39,11 @@
                       <div>
                         <mat-form-field appearance="fill" class=" example-full-width1">
                             <mat-select  [(ngModel)]="pay.invoiceNo"
-                             name="InvoiceNo">
+                             name="InvoiceNo"
+                             formControlName="invoiceNo"
+                             [ngClass]="{'is-invalid': (form.get('invoiceNo')
+                            .touched && form.get('invoiceNo').invalid ) }"
+                            >
                               <mat-option  disabled>Select Invoice No </mat-option>
                               <mat-option
                               *ngFor="let inv of Invoice2"           
@@ -46,7 +53,11 @@
                               {{inv.invoiceNo}}</mat-option>
                             </mat-select>
                             <mat-label><span class="req">* </span> Invoice No:</mat-label>
-                          </mat-form-field>
+                            <mat-error >
+                                Invoice No is required 
+                            </mat-error>
+              
+                            </mat-form-field>
                         </div> 
     
                     <!-- <div *ngIf="!show2">
@@ -126,7 +137,16 @@
             <input matInput type="number" min="1" step="any"
             [(ngModel)]="pay.paymentAmount" name="paymentAmount"
             id="paymentAmount"
-            placeholder="Enter Payment Amount">
+            placeholder="Enter Payment Amount"             
+            formControlName="paymentAmount"
+            [ngClass]="{'is-invalid': form.get('paymentAmount')
+           .touched && form.get('paymentAmount').invalid}"
+            >
+
+       <mat-error>
+        Payment Amount is required 
+        </mat-error>
+
        </mat-form-field>
 
                 <!-- <div class="form-group">
@@ -141,7 +161,15 @@
                         [(ngModel)]="pay.paymentDate" 
                         [ngModel]="pay.paymentDate | date:'yyyy-MM-dd'"
                         name="paymentDate" id="txt"
-                        placeholder="Enter Payment Date"/>   
+                        placeholder="Enter Payment Date"             
+                        formControlName="paymentDate"
+                        [ngClass]="{'is-invalid': form.get('paymentDate')
+                       .touched && form.get('paymentDate').invalid}"
+                        >      
+                   <mat-error>
+                    Payment Date is required 
+                    </mat-error>
+           
                        <!-- <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
                        [matDatepicker]="birthDate"
                        <mat-datepicker #birthDate color="primary"></mat-datepicker> -->
@@ -156,7 +184,7 @@
    
 
                   <div  class=" btn-group " style="padding-left:10% ;">
-                    <input class="btn btn-success" type="submit" name="submit_reg" value="Submit" 
+                    <input class="btn btn-success" [disabled]="!form.valid" type="submit" name="submit_reg" value="Submit" 
                     (click)="UpdatePayment()">
                     <input (click)="gotoList()" class = "btn btn-warning"routerLink="/GetEmployeePath"type="button" value="Goto List">            
                 </div>

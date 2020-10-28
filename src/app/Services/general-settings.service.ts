@@ -1,3 +1,4 @@
+import { HelperService } from './helper.service';
 import { GeneralSettingsData } from './../Class/GeneralSettingsData';
 import { tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
@@ -12,18 +13,19 @@ var tokenHeader;
 })
 export class GeneralSettingsService {
 
-  constructor(private toastr: ToastrService,private router: Router,private http:HttpClient) { }
+  constructor(private toastr: ToastrService,private router: Router,
+    private helper: HelperService,private http:HttpClient) { }
 
   GetToken()
   { 
        tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')})
   }
   
-  RemoveToken(){
-    localStorage.removeItem('token');
-    this.toastr.info("please Login Again!");
-    this.router.navigateByUrl('/LoginPath');
-  }
+  // RemoveToken(){
+  //   localStorage.removeItem('token');
+  //   this.toastr.info("please Login Again!");
+  //   this.router.navigateByUrl('/LoginPath');
+  // }
   
   ListGeneralSettings(){
     this.GetToken();
@@ -33,7 +35,7 @@ export class GeneralSettingsService {
          succ => { },
          err => {
              if (err.status == 401){
-             this.RemoveToken()
+             this.helper.Logout()
              }   
          }
      )
@@ -47,7 +49,7 @@ UpdateGeneralSettings(GSD: GeneralSettingsData){
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
@@ -64,13 +66,11 @@ UpdateGeneralSettings1(EditGS){
         succ => { },
         err => {
             if (err.status == 401){
-            this.RemoveToken()
+            this.helper.Logout()
             }   
         }
     )
 )
 }
-
-
 
 }

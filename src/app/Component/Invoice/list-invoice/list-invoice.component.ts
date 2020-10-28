@@ -151,7 +151,7 @@ $("#table_Invoice tbody").on("click", "a.editor_remove", e => {
     else if(data == -1)
     {
       this.toastr.warning('Pleace First Delete All Payment of This Invoice')     
-      this.lstpay(row.invoiceNo);
+  //    this.lstpay(row.invoiceNo);
     }
     else
     {

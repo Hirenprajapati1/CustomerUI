@@ -3,7 +3,7 @@ import { AuthenticationService } from './../../Services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { from } from 'rxjs';
 
 @Component({
@@ -12,6 +12,13 @@ import { from } from 'rxjs';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  
+  
+  form = new FormGroup({
+    username: new FormControl('',Validators.required),
+    password: new FormControl('',Validators.required),
+  })
+
   userName:string;
   password:string;
   formModel = {
@@ -39,29 +46,9 @@ export class LoginPageComponent implements OnInit {
     this.router.navigate(["/Registration"]);    
   }
 
-  onSubmit(form: NgForm) {
-    this.flag1=true;
-    if((this.formModel.username == "" ||this.formModel.username == undefined || this.formModel.username.trim() == ""   )&&(this.formModel.password == "" ||this.formModel.password == undefined || this.formModel.password.trim() == ""))
-    {
-      this.toastr.warning('User Name And Password are Requried','Requried Field!.');   
-      this.flag1=false;
-    }
-    else
+  onSubmit() {
       {
-        if(this.formModel.username == "" ||this.formModel.username == undefined || this.formModel.username.trim() == ""   )
-        {
-          this.toastr.warning('User Name is Requried','Requried Field!.');   
-          this.flag1=false;
-        }
-        else if(this.formModel.password == "" ||this.formModel.password == undefined || this.formModel.password.trim() == "")
-        {
-          this.toastr.warning('Password is Requried','Requried Field!.');   
-          this.flag1=false;
-        }
-      }
-      if(this.flag1==true)
-      {
-      this.service.AdminLogin(form.value).subscribe(
+      this.service.AdminLogin(this.formModel).subscribe(
         (res: any) => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('username', res.username);

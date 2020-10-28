@@ -12,6 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
+  form = new FormGroup({
+    customerNo: new FormControl('',Validators.required),
+    customerName: new FormControl('',Validators.required),
+  })
 
   // form = new FormGroup({
   //   departmentName: new FormControl('',Validators.required)
@@ -81,28 +85,7 @@ export class AddCustomerComponent implements OnInit {
   }
 
   AddCustomerNoByUser1()
-    {
-      if((this.Cust1.customerNo == ""  || this.Cust1.customerNo == undefined  ||  this.Cust1.customerNo.trim() == "" )&&(this.Cust1.customerName == "" || this.Cust1.customerName == undefined || this.Cust1.customerName.trim() == ""))
-      {
-        this.toastr.warning('Customer No And Customer Name are  Requried','Requried Field!.');   
-        this.flag=false;   
-      }
-  
-      else
-        {
-          this.flag=true;
-          if( this.Cust1.customerNo == "" || this.Cust1.customerNo == undefined   || this.Cust1.customerNo.trim() == "" )
-          {
-            this.toastr.warning('Customer No is Requried','Requried Field!.');   
-            this.flag=false;
-          }
-          else if(this.Cust1.customerName == "" || this.Cust1.customerName == undefined || this.Cust1.customerName.trim() == "")
-          {
-            this.toastr.warning('Customer Name is Requried','Requried Field!.');   
-            this.flag=false
-          }
-        }
-    if(this.flag == true){
+    {  
         let resp=this.service.AddCustomerNoByUser(this.Cust1);
         resp.subscribe((data)=>{(this.message=data)
     
@@ -119,37 +102,10 @@ export class AddCustomerComponent implements OnInit {
           this.toastr.error('Something went wrong', 'Error');
         }
       });
-    }
   }
 
    AddCustomer1()
     {
-      if(this.Cust1.customerNo != undefined &&(this.Cust1.customerName == "" || this.Cust1.customerName == undefined || this.Cust1.customerName.trim() == ""))
-      {
-  
-      if((this.Cust1.customerNo == ""  ||  this.Cust1.customerNo.trim() == "" )&&(this.Cust1.customerName == "" || this.Cust1.customerName == undefined || this.Cust1.customerName.trim() == ""))
-      {
-        this.toastr.warning('Customer No And Customer Name are  Requried','Requried Field!.');   
-        this.flag=false;   
-      }
-    }
-  
-      else
-        {
-          this.flag=true;
-          if(this.Cust1.customerNo !=undefined){
-          if( this.Cust1.customerNo == ""  || this.Cust1.customerNo.trim() == "" )
-          {
-            this.toastr.warning('Customer No is Requried','Requried Field!.');   
-            this.flag=false;
-          }}
-          else if(this.Cust1.customerName == "" || this.Cust1.customerName == undefined || this.Cust1.customerName.trim() == "")
-          {
-            this.toastr.warning('Customer Name is Requried','Requried Field!.');   
-            this.flag=false
-          }
-        }
-    if(this.flag == true){
         let resp=this.service.AddCustomer(this.Cust1);
         resp.subscribe((data)=>{(this.message=data)
     
@@ -167,7 +123,7 @@ export class AddCustomerComponent implements OnInit {
         }
       });
     }
-  }
+  
 
    getno(){
   //  this.CustomerNo=this.service.GetCustomerNo().subscribe((data)=>data) 
