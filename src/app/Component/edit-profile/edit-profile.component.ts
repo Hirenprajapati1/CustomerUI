@@ -13,9 +13,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditProfileComponent implements OnInit {
 
   form = new FormGroup({
-    firstName: new FormControl('',Validators.required),
-    lastName: new FormControl('',Validators.required),
-    username: new FormControl('',Validators.required),
+    firstName: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
+    lastName: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
+    username: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
     contactNo: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),  
     emailid: new FormControl('',[Validators.required, Validators.email]),
     gender: new FormControl('',Validators.required),

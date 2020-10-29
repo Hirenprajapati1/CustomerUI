@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 //import { Color, Label, ThemeService } from 'ng2-charts';
 //import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
 //import {  ChartType, Column } from 'angular-google-charts';
-import { templateJitUrl } from '@angular/compiler';
+//import { templateJitUrl } from '@angular/compiler';
 import { ChartType, Column } from 'angular-google-charts';
 
 @Component({
@@ -86,7 +86,12 @@ export class DashboardComponent implements OnInit {
     //columns: [{label:'Element', type: 'string'} , {label:'Density',type: 'number'}, { role: 'style' }, { role: 'annotation' }],
     //columns: ['Element', 'Density', { role: 'style' }, { role: 'annotation' }],
     options: {
-      'minValue': 10,
+      isStacked: true,
+      'is3D':true,
+     // height: 300,
+     //legend: {position: 'left'},   
+     // legend: {position: 'top', maxLines: 3},
+  //    vAxis: {minValue: 0},
       animation: {
         duration: 1500,
         easing: 'ease-in-out',

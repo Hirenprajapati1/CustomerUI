@@ -47,6 +47,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit() {
+  if(this.formModel.username.trim()=="")
+  {
+    this.toastr.warning('UserName name is Requried');
+  }
+  else
       {
       this.service.AdminLogin(this.formModel).subscribe(
         (res: any) => {

@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateCustomerComponent implements OnInit {
   form = new FormGroup({
     customerNo: new FormControl('',Validators.required),
-    customerName: new FormControl('',Validators.required),
+    customerName:  new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
   })
 
 
@@ -33,10 +33,14 @@ export class UpdateCustomerComponent implements OnInit {
 
 
   public UpdateCustomer(){
-    this.Cust.modifyBy =localStorage.getItem('username');
-  
-  
+
+    if(this.Cust.customerName.trim() == "")
     {
+      this.toastr.warning('Customer Name is requried');
+    }
+    else{
+    {
+      this.Cust.modifyBy =localStorage.getItem('username');
      this.service.UpdateCustomer(this.id, this.Cust)
      .subscribe(data =>{ console.log(data), error => console.log(error)   
     if(data == 1)
@@ -48,7 +52,7 @@ export class UpdateCustomerComponent implements OnInit {
       this.toastr.error('Something went wrong', 'Error');
     }
   });
-}
+}}
   }  
 
 

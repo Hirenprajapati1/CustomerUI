@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class AddPaymentComponent implements OnInit {
   form = new FormGroup({
-    paymentNo: new FormControl('',Validators.required),
+    paymentNo: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
     invoiceNo: new FormControl('',Validators.required),
     customerNo: new FormControl('',Validators.required),
     paymentAmount: new FormControl('',Validators.required),
@@ -82,7 +82,10 @@ this.pay.invoiceNo=undefined;
 
   AddPayment()
   {  
-     if(this.pay.paymentAmount <= 0){
+    if(this.GS[0].autoPaymentNo == false && this.pay.paymentNo.trim()==""){
+      this.toastr.warning('Payment No is requried');   
+    }
+    else if(this.pay.paymentAmount <= 0){
     this.toastr.warning('Payment Amount should be more then 0 requried');   
      }
   else

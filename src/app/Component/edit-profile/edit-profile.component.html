@@ -20,9 +20,10 @@
                          [ngClass]="{'is-invalid':form.get('username')
                          .touched && form.get('username').invalid}"
                          > 
-                         <mat-error class="invalid-feedback">
-                           User Name is required 
-                         </mat-error>          
+                         <mat-error *ngIf="form.get('username').touched && form.get('username').invalid"  class="invalid-feedback">
+                            <div *ngIf="form.get('username').errors.required">First Name is required.</div>
+                            <div *ngIf="form.get('username').errors.pattern">First Nnme not contains whitespace</div>
+                        </mat-error>          
 
                          <span matPrefix></span>                  
                     </mat-form-field>
@@ -38,12 +39,12 @@
                              formControlName="firstName" 
                              [ngClass]="{'is-invalid': form.get('firstName')
                              .touched && form.get('firstName').invalid}"
-> 
-                             <span matPrefix></span>    
-                             <mat-error class="invalid-feedback">
-                                First Name is required 
-                             </mat-error>  
-              
+                        > 
+                        <mat-error *ngIf="form.get('firstName').touched && form.get('firstName').invalid"  class="invalid-feedback">
+                            <div *ngIf="form.get('firstName').errors.required">First Name is required.</div>
+                            <div *ngIf="form.get('firstName').errors.pattern">First Nnme not contains whitespace</div>
+                        </mat-error>          
+
                         </mat-form-field>
 
                          <mat-form-field  style=" padding-right: 10%;" class="example-full-width2">
@@ -55,10 +56,11 @@
                                  [ngClass]="{'is-invalid': form.get('lastName')
                                 .touched && form.get('lastName').invalid}"
                             >
-                            <mat-error class="invalid-feedback">
-                                Last Name is required 
-                             </mat-error>
-
+                            <mat-error *ngIf="form.get('lastName').touched && form.get('lastName').invalid"  class="invalid-feedback">
+                                <div *ngIf="form.get('lastName').errors.required">First Name is required.</div>
+                                <div *ngIf="form.get('lastName').errors.pattern">First Nnme not contains whitespace</div>
+                            </mat-error>          
+        
                         </mat-form-field>
                      
 

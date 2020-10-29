@@ -22,12 +22,12 @@
                         formControlName="firstName" 
                         [ngClass]="{'is-invalid': form.get('firstName')
                         .touched && form.get('firstName').invalid}"
-> 
-                        <span matPrefix></span>    
-                        <mat-error class="invalid-feedback">
-                           First Name is required 
-                        </mat-error>  
-         
+                        > 
+                        <mat-error *ngIf="form.get('firstName').touched && form.get('firstName').invalid"  class="invalid-feedback">
+                            <div *ngIf="form.get('firstName').errors.required">First Name is required.</div>
+                            <div *ngIf="form.get('firstName').errors.pattern">First Nnme not contains whitespace</div>
+                        </mat-error>          
+           
                    </mat-form-field>
 
                     <mat-form-field  style=" padding-right: 10%;" class="example-full-width2">
@@ -39,9 +39,10 @@
                             [ngClass]="{'is-invalid': form.get('lastName')
                            .touched && form.get('lastName').invalid}"
                        >
-                       <mat-error class="invalid-feedback">
-                           Last Name is required 
-                        </mat-error>
+                    <mat-error *ngIf="form.get('lastName').touched && form.get('lastName').invalid"  class="invalid-feedback">
+                        <div *ngIf="form.get('lastName').errors.required">First Name is required.</div>
+                        <div *ngIf="form.get('lastName').errors.pattern">First Nnme not contains whitespace</div>
+                    </mat-error>          
 
                    </mat-form-field>
                     
@@ -55,9 +56,14 @@
                                      [ngClass]="{'is-invalid':form.get('username')
                                      .touched && form.get('username').invalid}"
                                      > 
-                                     <mat-error class="invalid-feedback">
+                                     <mat-error *ngIf="form.get('username').touched && form.get('username').invalid"  class="invalid-feedback">
+                                        <div *ngIf="form.get('username').errors.required">First Name is required.</div>
+                                        <div *ngIf="form.get('username').errors.pattern">First Nnme not contains whitespace</div>
+                                    </mat-error>          
+                
+                                     <!-- <mat-error class="invalid-feedback">
                                        User Name is required 
-                                     </mat-error>          
+                                     </mat-error>           -->
             
                                 </mat-form-field>
                   
@@ -98,7 +104,7 @@
     
                             <mat-form-field class=" example-full-width1 " >
                                 <mat-label><span class="req">* </span>Contact No</mat-label>
-                                <input matInput type="tel" maxlength="10"
+                                <input matInput type="number" maxlength="10"
                                  [(ngModel)]="Admin.contactNo"
                                  name="contactNo" id="txtcontactNo"
                                  placeholder="Enter Your ContactNo "
@@ -193,9 +199,14 @@
                                      [ngClass]="{'is-invalid':form.get('password1')
                                      .touched && form.get('password1').invalid}"
                                      > 
-                                     <mat-error class="invalid-feedback">
+                                     <mat-error *ngIf="form.get('password1').touched && form.get('password1').invalid"  class="invalid-feedback">
+                                        <div *ngIf="form.get('password1').errors.required">Password is required.</div>
+                                        <div *ngIf="form.get('password1').errors.minlength">Password should be more then 3 character.</div>
+                                    </mat-error>          
+              
+                                     <!-- <mat-error class="invalid-feedback">
                                        Password is required 
-                                    </mat-error>     
+                                    </mat-error>      -->
                             </mat-form-field>                                                       
     
 

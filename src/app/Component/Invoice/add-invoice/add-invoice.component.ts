@@ -18,7 +18,7 @@ import * as moment from 'moment';
 
 export class AddInvoiceComponent implements OnInit {
   form = new FormGroup({
-    invoiceNo: new FormControl('',Validators.required),
+    invoiceNo:new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
     customerNo: new FormControl('',Validators.required),
     invoiceDate: new FormControl('',Validators.required),
     invoiceAmount: new FormControl('',Validators.required),
@@ -70,7 +70,10 @@ export class AddInvoiceComponent implements OnInit {
   {
     if(this.inv.invoiceAmount <= 0)
     {
-      this.toastr.warning('Invoice Amount should be more then 0');   
+      this.toastr.warning('Invoice Amount should be more then 0 requried');   
+    }
+    else if(this.inv.invoiceDate >this.TodayDate){
+      this.toastr.warning('Invoice Date should not be of future');   
     }
     else{
     this.inv.CreatedBy = localStorage.getItem('username');
@@ -86,7 +89,13 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   public AddInvoice2(){
-      let resp=this.service.AddInvoiceNoByUser(this.inv);
+      if(this.inv.invoiceNo.trim() == '')
+      {
+        this.toastr.warning('Invoice No is requried.');        
+      }
+      else
+      {
+       let resp=this.service.AddInvoiceNoByUser(this.inv);
       resp.subscribe((data)=>{(this.message=data)
   
       if(data >= 1)
@@ -102,7 +111,7 @@ export class AddInvoiceComponent implements OnInit {
         this.toastr.error('Something went wrong', 'Error');
       }
     });
-    
+  } 
   }
 
 

@@ -17,10 +17,11 @@
                    .touched && form.get('invoiceNo').invalid}"
                >
       
-               <mat-error class="invalid-feedback">
-                Invoice No is required 
-                </mat-error>
-         
+               <mat-error *ngIf="form.get('invoiceNo').touched && form.get('invoiceNo').invalid"  class="invalid-feedback">
+                <div *ngIf="form.get('invoiceNo').errors.required">Invoice No is required.</div>
+                <div *ngIf="form.get('invoiceNo').errors.pattern">Please remove whitespace</div>
+              </mat-error>          
+
                 </mat-form-field>
           
                 <mat-form-field appearance="fill" class=" example-full-width1 " *ngIf="GS[0].autoInvoiceNo">

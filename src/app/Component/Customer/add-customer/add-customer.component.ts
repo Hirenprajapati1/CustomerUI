@@ -13,8 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddCustomerComponent implements OnInit {
   form = new FormGroup({
-    customerNo: new FormControl('',Validators.required),
-    customerName: new FormControl('',Validators.required),
+    customerNo: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
+    customerName:  new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
   })
 
   // form = new FormGroup({
@@ -71,17 +71,29 @@ export class AddCustomerComponent implements OnInit {
   
   public AddCustomer()
   {
+    if(this.GS[0].autoCustomerNo == false && this.Cust1.customerNo.trim()=="")
+    {
+      this.toastr.warning('Customer No is requried');
+    }
+    else if(this.Cust1.customerName.trim() == "")
+    {
+      this.toastr.warning('Customer Name is requried');
+    }
+    else
+    {
     this.userName =localStorage.getItem('username');
     this.Cust1.CreatedBy = this.userName;
  
     if(this.GS[0].autoCustomerNo == true){
-      this.Cust1.customerNo = undefined;
+
+      this.Cust1.customerNo ='C'+ this.Cust2[0].customerNo;
     this.AddCustomer1();
     }
     else 
     {
       this.AddCustomerNoByUser1();
     }
+  }
   }
 
   AddCustomerNoByUser1()

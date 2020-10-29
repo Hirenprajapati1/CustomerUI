@@ -38,10 +38,11 @@
                              [ngClass]="{'is-invalid': form.get('customerNo')
                             .touched && form.get('customerNo').invalid}"
                         >
-                        <mat-error class="invalid-feedback">
-                            CustomerNo is required 
-                         </mat-error>
-                
+                        <mat-error *ngIf="form.get('customerNo').touched && form.get('customerNo').invalid"  class="invalid-feedback">
+                            <div *ngIf="form.get('customerNo').errors.required">Customer No is required.</div>
+                            <div *ngIf="form.get('customerNo').errors.pattern">Please remove whitespace</div>
+                        </mat-error>          
+
                              <!-- <span matPrefix>C&nbsp;</span> -->
                        
                         </mat-form-field>
@@ -63,10 +64,11 @@
                                  [ngClass]="{'is-invalid': form.get('customerName')
                                 .touched && form.get('customerName').invalid}"
                             >
-                            <mat-error class="invalid-feedback">
-                                Customer Name is required 
-                             </mat-error>
-                   
+                            <mat-error *ngIf="form.get('customerName').touched && form.get('customerName').invalid"  class="invalid-feedback">
+                                <div *ngIf="form.get('customerName').errors.required">Customer Name is required.</div>
+                                <div *ngIf="form.get('customerName').errors.pattern">Customer Name not contains any whitespace</div>
+                            </mat-error>          
+       
                         </mat-form-field>
                     
                     <div class=" btn-group" style="padding-left:10% ;">

@@ -13,14 +13,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
   form = new FormGroup({
-    firstName: new FormControl('',Validators.required),
-    lastName: new FormControl('',Validators.required),
-    username: new FormControl('',Validators.required),
+    firstName: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
+    lastName: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
+    username: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
     contactNo: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),  
     emailid: new FormControl('',[Validators.required, Validators.email]),
     gender: new FormControl('',Validators.required),
-    password1: new FormControl('',Validators.required)
+    password1: new FormControl('',[Validators.required, Validators.minLength(4)])
     // region: new FormControl('',Validators.required)
+    
   })
   
 
@@ -54,8 +55,23 @@ export class RegistrationComponent implements OnInit {
   
 Registration()
 {
- 
   {
+  // if(this.Admin.firstName.trim()=="")
+  // {
+  //   this.toastr.warning('FirstName name is Requried');
+  // }
+  // else if(this.Admin.lastName.trim()=="")
+  // {
+  //   this.toastr.warning('lsatName name is Requried');
+  // }
+  // else if(this.Admin.username.trim()=="")
+  // {
+  //   this.toastr.warning('UserName name is Requried');
+  // }
+  // else
+}
+  {
+    this.Admin.contactNo=this.Admin.contactNo.toString();
 //    this.Admin.region=this.selectedRegians.toString();
     let resp=this.service.AddAdmin(this.Admin);
     resp.subscribe((data)=>{(this.message=data)
@@ -73,7 +89,10 @@ Registration()
       this.toastr.error('Something went wrong', 'Error');
     }
   });
-}}
+}
+
+
+}
 
 gotoLogin(){
   localStorage.removeItem('token');

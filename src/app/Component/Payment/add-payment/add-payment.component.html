@@ -21,9 +21,10 @@
                    .touched && form.get('paymentNo').invalid}"
                >
       
-               <mat-error class="invalid-feedback">
-                Payment No is required 
-                </mat-error>
+               <mat-error *ngIf="form.get('paymentNo').touched && form.get('paymentNo').invalid"  class="invalid-feedback">
+                <div *ngIf="form.get('paymentNo').errors.required">Invoice No is required.</div>
+                <div *ngIf="form.get('paymentNo').errors.pattern">Please remove whitespace</div>
+              </mat-error>          
           
                      <span matPrefix></span>      
                 </mat-form-field>
