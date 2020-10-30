@@ -16,7 +16,7 @@ export class UpdateInvoiceComponent implements OnInit {
     invoiceNo: new FormControl('',Validators.required),
     customerNo: new FormControl('',Validators.required),
     invoiceDate: new FormControl('',Validators.required),
-    invoiceAmount: new FormControl('',Validators.required),
+    invoiceAmount: new FormControl('',[Validators.required, Validators.pattern(/^[0-9]*(?:\.[0-9]*)?$/)]),
   })
  
  

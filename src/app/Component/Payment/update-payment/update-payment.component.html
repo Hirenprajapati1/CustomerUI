@@ -16,12 +16,6 @@
                      <span matPrefix></span>      
                 </mat-form-field>
 
-                <!-- <div class="form-group">
-                    <label for="paymentNo"> Payment No  : {{pay.paymentNo}} </label>
-                    <input hidden class="form-control" type="text" [(ngModel)]="pay.paymentNo" name="paymentNo" id="txt"
-                        placeholder="Enter Payment No">
-                    </div> -->
-        <!-- {{CustNo[0].customerNo}} -->
                     <mat-form-field appearance="fill" class=" example-full-width1 ">
                         <mat-select  name="customerNo" [(ngModel)]="CustNo[0].customerNo" 
                         formControlName="customerNo">
@@ -33,7 +27,7 @@
                            value="{{cust.customerNo }}">
                            {{cust.customerName}}   &nbsp; &nbsp;  ({{cust.customerNo}})</mat-option>
                         </mat-select>
-                        <mat-label><span class="req">* </span> Customer:</mat-label>
+                        <mat-label><span class="req">* </span> Customer</mat-label>
                       </mat-form-field>     
                 
                       <div>
@@ -52,7 +46,7 @@
                               value="{{inv.invoiceNo}}">
                               {{inv.invoiceNo}}</mat-option>
                             </mat-select>
-                            <mat-label><span class="req">* </span> Invoice No:</mat-label>
+                            <mat-label><span class="req">* </span> Invoice No</mat-label>
                             <mat-error >
                                 Invoice No is required 
                             </mat-error>
@@ -60,30 +54,9 @@
                             </mat-form-field>
                         </div> 
     
-                    <!-- <div *ngIf="!show2">
-                    <mat-form-field appearance="fill" class=" example-full-width1">
-                        <mat-select  [(ngModel)]="pay.invoiceNo "disabled
-                         name="InvoiceNo">
-                          <mat-option  disabled>Select Invoice No </mat-option>
-                          <mat-option
-                          *ngFor="let inv of Invoice2"           
-                          [ngValue]='inv.invoiceNo'
-                          (click)="GetInvoiceDetailsByNo()" 
-                          value="{{inv.invoiceNo}}">
-                          {{inv.invoiceNo}}</mat-option>
-                        </mat-select>
-                        <mat-label><span class="req">* </span> Invoice No:</mat-label>
-                      </mat-form-field>
-                    </div>
-                -->
         
                 <div *ngIf="show1"  class=" example-full-width1 " >
                       <mat-card [ngStyle]="{'background-color':' rgb(232, 240, 243)'}">
-                        <!-- <mat-form-field   appearance="fill"class="example-full-width1">
-                            <mat-label>Invoice Amount - Payment Amount = RemeningPayments</mat-label>
-                                <input matInput readonly
-                                value="{{Invoice[0].invoiceAmount}} - {{Invoice[0].invoiceAmount}} = {{Invoice[0].invoiceAmount}} ">
-                        </mat-form-field> -->
                         <table  class=" example-full-width1 " >
                             <thead>
                                 <tr>
@@ -93,14 +66,19 @@
                                     <td>Invoice Date</td><td>:</td><td>{{Invoice[0].invoiceDate | date :"dd-MMM-yy"}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Invoice Amount</td><td>:</td><td>{{Invoice[0].invoiceAmount}}</td>
+                                    <td>Invoice Amount</td><td>:</td><td>{{Invoice[0].invoiceAmount | currency}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Payment Amount</td><td>:</td><td>{{Invoice[0].paymentAmount}}</td>
+                                    <td>Payment Amount</td><td>:</td><td>{{Invoice[0].paymentAmount | currency}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Payment Due Amount</td><td>:</td><td>{{Invoice[0].invoiceAmount - Invoice[0].paymentAmount}}</td>
+                                <tr *ngIf="(Invoice[0].invoiceAmount - Invoice[0].paymentAmount) >= 0;else second">
+                                    <td>Payment Due Amount</td><td>:</td><td>{{Invoice[0].invoiceAmount - Invoice[0].paymentAmount | currency}}</td>
                                 </tr>
+                                
+                                <ng-template #second>
+                                    <td> Extra given Payment Amount</td><td>:</td><td>{{-(Invoice[0].invoiceAmount - Invoice[0].paymentAmount) | currency}}</td>
+                                </ng-template>
+  
                                 <tr>
                                     <td>Payment Due Date:</td><td>:</td><td>{{Invoice[0].paymentDueDate | date :"dd-MMM-yy"}}</td>
                                 </tr>
@@ -111,29 +89,9 @@
                     </div>
          
 
-                     <!-- <mat-form-field appearance="fill" class=" example-full-width1 ">
-                        <mat-select  [(ngModel)]="pay.invoiceNo" name="InvoiceNo">
-                          <mat-option>Select Invoice No</mat-option>
-                          <mat-option
-                          *ngFor="let inv of Invoice1"
-                           [ngValue]='inv.invoiceNo'
-                           value="{{inv.invoiceNo}}">
-                           {{inv.invoiceNo}}</mat-option>
-                        </mat-select>
-                        <mat-label><span class="req">* </span> Invoice No:</mat-label>
-                      </mat-form-field>  -->
-    
-
-                    <!-- <div class="form-group">
-                         <label for="invoiceNo"><span class="req">* </span> Invoice No </label>
-                        <select [(ngModel)]="pay.invoiceNo" class="form-control" name="customerNo">
-                            <option  *ngFor="let inv of Invoice1" [ngValue]='inv.invoiceNo'><span>{{inv.invoiceNo}}</span></option>
-                         </select>
-                        </div>
-     -->
 
      <mat-form-field  appearance="fill" class="example-full-width1">
-        <mat-label><span class="req">* </span>Payment Amount:</mat-label>
+        <mat-label><span class="req">* </span>Payment Amount</mat-label>
             <input matInput type="number" min="1" step="any"
             [(ngModel)]="pay.paymentAmount" name="paymentAmount"
             id="paymentAmount"
@@ -143,20 +101,33 @@
            .touched && form.get('paymentAmount').invalid}"
             >
 
-       <mat-error>
-        Payment Amount is required 
-        </mat-error>
+            <mat-error *ngIf="form.get('paymentAmount').touched && form.get('paymentAmount').invalid"  class="invalid-feedback">
+                <div *ngIf="form.get('paymentAmount').errors.required">Payment Amount is required.</div>
+                <div *ngIf="form.get('paymentAmount').errors.pattern">Amount Should be the positive value.</div>
+            </mat-error>
 
        </mat-form-field>
 
-                <!-- <div class="form-group">
-                    <label for="paymentAmount"><span class="req">* </span>Payment Amount:</label>
-                    <input  type="number" min="1" step="any"  [(ngModel)]="pay.paymentAmount" name="paymentAmount" id="paymentAmount"
-                        class="form-control" placeholder="Enter Payment Amount">
-                </div> -->
+       <div *ngIf="show1 && (pay.paymentAmount) > 0"  class=" example-full-width1 " >
+        <mat-card [ngStyle]="{'background-color':' rgb(232, 240, 243)'}">
+          <table  class=" example-full-width1 " >
+              <thead>
+                  <tr *ngIf="(Invoice[0].invoiceAmount - Invoice[0].paymentAmount )- pay.paymentAmount >= 0;else second">
+                      <td>Payment Due Amount</td><td>:</td><td>{{(Invoice[0].invoiceAmount - Invoice[0].paymentAmount )- pay.paymentAmount | currency}}</td>
+                  </tr>
+                  
+                  <ng-template #second>
+                      <td> Extra given Payment Amount</td><td>:</td><td>{{-((Invoice[0].invoiceAmount - Invoice[0].paymentAmount )-  pay.paymentAmount) | currency}}</td>
+                  </ng-template>
+                        
+              </thead>
+          </table>
+      </mat-card>
+      </div>
+
 
                 <mat-form-field   appearance="fill"class="example-full-width1">
-                    <mat-label><span class="req">* </span>Payment Date:</mat-label>
+                    <mat-label><span class="req">* </span>Payment Date</mat-label>
                         <input matInput type="date"
                         [(ngModel)]="pay.paymentDate" 
                         [ngModel]="pay.paymentDate | date:'yyyy-MM-dd'"
@@ -170,17 +141,8 @@
                     Payment Date is required 
                     </mat-error>
            
-                       <!-- <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
-                       [matDatepicker]="birthDate"
-                       <mat-datepicker #birthDate color="primary"></mat-datepicker> -->
                    </mat-form-field>
 
-                <!-- <div class="form-group">
-                    <label for="paymentDate"><span class="req">* </span> Payment Date: </label>
-                    <input class="form-control" type="date" [(ngModel)]="pay.paymentDate"
-                    [ngModel]="pay.paymentDate | date:'yyyy-MM-dd'" name="paymentDate" id="txt"
-                        placeholder="Enter Payment Date"/>       
-                  </div> -->
    
 
                   <div  class=" btn-group " style="padding-left:10% ;">

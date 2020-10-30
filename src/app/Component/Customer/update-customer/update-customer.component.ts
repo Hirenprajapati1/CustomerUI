@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateCustomerComponent implements OnInit {
   form = new FormGroup({
     customerNo: new FormControl('',Validators.required),
-    customerName:  new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
+    customerName:  new FormControl('',[Validators.required]),
   })
 
 

@@ -19,7 +19,7 @@ export class UpdatePaymentComponent implements OnInit {
     paymentNo: new FormControl('',Validators.required),
     customerNo: new FormControl('',Validators.required),
     invoiceNo: new FormControl('',Validators.required),
-    paymentAmount: new FormControl('',Validators.required),
+    paymentAmount:  new FormControl('',[Validators.required, Validators.pattern(/^[0-9]*(?:\.[0-9]*)?$/)]),
     paymentDate: new FormControl('',Validators.required),
   })
   pay : PaymentData= new PaymentData();

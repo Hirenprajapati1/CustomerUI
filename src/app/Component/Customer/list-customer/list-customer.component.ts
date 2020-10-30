@@ -2,7 +2,6 @@ import { CustomerServiceService } from './../../../Services/customer-service.ser
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { TitleCasePipe } from '@angular/common';
 import Swal from 'sweetalert2';
  
 declare var $;
@@ -132,6 +131,12 @@ $("#table_Customer tbody").on("click", "a.editor_remove", e => {
     this.Custdata=this.service.GetCustomer().subscribe((data)=>this.Custdata=data); 
  }
 
+ 
+
+}
+
+
+
   // public DeleteCustomer(id:number){
   //   if (confirm('Are you sure to delete this record ?'))
   //   {
@@ -151,6 +156,3 @@ $("#table_Customer tbody").on("click", "a.editor_remove", e => {
   //   }
   //  }
 
- 
-
-}

@@ -19,7 +19,7 @@ export class AddPaymentComponent implements OnInit {
     paymentNo: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
     invoiceNo: new FormControl('',Validators.required),
     customerNo: new FormControl('',Validators.required),
-    paymentAmount: new FormControl('',Validators.required),
+    paymentAmount: new FormControl('',[Validators.required, Validators.pattern(/^[0-9]*(?:\.[0-9]*)?$/)]),
     paymentDate: new FormControl('',Validators.required),
   })
  
@@ -93,12 +93,10 @@ this.pay.invoiceNo=undefined;
     this.pay.CreatedBy = localStorage.getItem('username');
     if(this.GS[0].autoPaymentNo == true){
       this.pay.paymentNo ='P'+ this.Pay1[0].paymentNo;
-    this.AddPayment1();
     }
-    else
-    {
-      this.AddPayment2();
-    }}
+    this.AddPayment1();
+
+  }
   }
 
 

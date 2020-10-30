@@ -24,9 +24,8 @@
                              [ngClass]="{'is-invalid': form.get('customerName')
                             .touched && form.get('customerName').invalid}"
                         >
-                        <mat-error *ngIf="form.get('customerName').touched && form.get('customerName').invalid"  class="invalid-feedback">
-                            <div *ngIf="form.get('customerName').errors.required">Customer Name is required.</div>
-                            <div *ngIf="form.get('customerName').errors.pattern">Please remove whitespace</div>
+                        <mat-error   class="invalid-feedback">
+                            <div >Customer Name is required.</div>
                         </mat-error>          
    
                     </mat-form-field>

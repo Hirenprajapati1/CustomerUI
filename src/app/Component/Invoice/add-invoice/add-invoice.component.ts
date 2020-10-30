@@ -21,7 +21,11 @@ export class AddInvoiceComponent implements OnInit {
     invoiceNo:new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
     customerNo: new FormControl('',Validators.required),
     invoiceDate: new FormControl('',Validators.required),
-    invoiceAmount: new FormControl('',Validators.required),
+    invoiceAmount: new FormControl('',[Validators.required, Validators.pattern(/^[0-9]*(?:\.[0-9]*)?$/)]),
+    //   ^(?:[1-9]\d*|0)?(?:\.\d+)?$
+    //   /^[1-9]\d*$/
+    //   /^(?:[1-9]\d*|0)?(?:\.\d+)?$/
+    //   /^[1-9]*(?:\.[0-9]*)?$/
   })
   
   inv : InvoiceData = new InvoiceData();
@@ -79,13 +83,17 @@ export class AddInvoiceComponent implements OnInit {
     this.inv.CreatedBy = localStorage.getItem('username');
     if(this.GS[0].autoInvoiceNo==true){
       this.inv.invoiceNo ='I'+ this.Invo[0].invoiceNo;
-    this.AddInvoice1();
     }
-    else 
+
+
+    if(this.inv.invoiceNo.trim() == '')
     {
-      this.AddInvoice2();
+      this.toastr.warning('Invoice No is requried.');        
     }
+    else{
+    this.AddInvoice1();
   }
+     }
   }
 
   public AddInvoice2(){

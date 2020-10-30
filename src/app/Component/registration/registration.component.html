@@ -25,7 +25,7 @@
                         > 
                         <mat-error *ngIf="form.get('firstName').touched && form.get('firstName').invalid"  class="invalid-feedback">
                             <div *ngIf="form.get('firstName').errors.required">First Name is required.</div>
-                            <div *ngIf="form.get('firstName').errors.pattern">First Nnme not contains whitespace</div>
+                            <div *ngIf="form.get('firstName').errors.pattern">Please remove whitespace</div>
                         </mat-error>          
            
                    </mat-form-field>
@@ -40,8 +40,8 @@
                            .touched && form.get('lastName').invalid}"
                        >
                     <mat-error *ngIf="form.get('lastName').touched && form.get('lastName').invalid"  class="invalid-feedback">
-                        <div *ngIf="form.get('lastName').errors.required">First Name is required.</div>
-                        <div *ngIf="form.get('lastName').errors.pattern">First Nnme not contains whitespace</div>
+                        <div *ngIf="form.get('lastName').errors.required">Last Name is required.</div>
+                        <div *ngIf="form.get('lastName').errors.pattern">Please remove whitespace</div>
                     </mat-error>          
 
                    </mat-form-field>
@@ -57,8 +57,8 @@
                                      .touched && form.get('username').invalid}"
                                      > 
                                      <mat-error *ngIf="form.get('username').touched && form.get('username').invalid"  class="invalid-feedback">
-                                        <div *ngIf="form.get('username').errors.required">First Name is required.</div>
-                                        <div *ngIf="form.get('username').errors.pattern">First Nnme not contains whitespace</div>
+                                        <div *ngIf="form.get('username').errors.required">User Name is required.</div>
+                                        <div *ngIf="form.get('username').errors.pattern">Please remove whitespace</div>
                                     </mat-error>          
                 
                                      <!-- <mat-error class="invalid-feedback">
@@ -152,42 +152,7 @@
         
                             </div>
             
-                         <!-- <mat-label class=" example-full-width1 "><span class="req">* </span>Gender</mat-label>
-                        <mat-radio-group [(ngModel)]="Admin.gender" aria-label="Select an option" class="row example-full-width1"
-                        >      
-                            <mat-radio-button  Name ="Gender"
-                            name="gender" value="Male"
-                            formControlName="gender" 
-                            [ngClass]="{'is-invalid':form.get('gender')
-                             .touched && form.get('gender').invalid}"
-                            > Male </mat-radio-button>&nbsp;&nbsp;
-                            <mat-radio-button  Name ="Gender"
-                            name="gender" value="Female"
-                            formControlName="gender" 
-                            [ngClass]="{'is-invalid':form.get('gender')
-                             .touched && form.get('gender').invalid}"
-                            > Female </mat-radio-button>&nbsp;&nbsp;
-                            <mat-radio-button  Name ="Gender"
-                            name="gender" value="Other"
-                            formControlName="gender" 
-                            [ngClass]="{'is-invalid':form.get('gender')
-                             .touched && form.get('gender').invalid}"
-                             > Other </mat-radio-button> 
-                        </mat-radio-group> 
-                        <div class="invalid-feedback  example-full-width1">
-                            <div *ngIf="form.get('gender').errors.required">Mobile Number is required.</div>
-                        </div> -->
-
-                            <!-- <mat-label class=" example-full-width1 "><span class="req">* </span>Regian</mat-label>
-                            <div class="row example-full-width1" >
-                            <div class="col-4 " *ngFor="let reg Of Regians">   
-                                <input  type="checkbox"  value="{{reg}}" (change)= regianchange($event) /><mat-label> {{reg}} </mat-label>
-                            </div>
-                            </div>
-                            <div class="invalid-feedback  example-full-width1">
-                                <b>   Minimam 1 Gegian is required </b>
-                            </div>           -->
-           
+                
                             <mat-form-field class=" example-full-width1 " >
                                 <mat-label><span class="req">* </span>Password</mat-label>
                                     <input matInput
@@ -204,29 +169,10 @@
                                         <div *ngIf="form.get('password1').errors.minlength">Password should be more then 3 character.</div>
                                     </mat-error>          
               
-                                     <!-- <mat-error class="invalid-feedback">
-                                       Password is required 
-                                    </mat-error>      -->
                             </mat-form-field>                                                       
     
 
-                            <!-- <div class="form-group">
-                            <mat-label><span class="req">* </span> Password</mat-label>
-                            <input  type="password"  
-                            class="form-control"
-                             value="Admin.password" 
-                             [(ngModel)]="Admin.password"
-                             name="password" id="txtpassword"
-                             placeholder="Enter Password "
-                             formControlName="password" 
-                             [ngClass]="{'is-invalid':form.get('password')
-                             .touched && form.get('password').invalid}"
-                             > 
-                            <div class="invalid-feedback">
-                                Password is required
-                              </div>          
-                            </div>
- -->
+                
 
                         
                     <div class=" example-full-width1 text-center "style="margin-top: 2%;" >

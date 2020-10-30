@@ -14,15 +14,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddCustomerComponent implements OnInit {
   form = new FormGroup({
     customerNo: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
-    customerName:  new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
+    customerName:  new FormControl('',[Validators.required]),
   })
 
-  // form = new FormGroup({
-  //   departmentName: new FormControl('',Validators.required)
-  // })
   GS:any;
   Cust1 : CustomerData = new CustomerData();
- // Cust2 : CustomerData = new CustomerData();
   Cust2:any;
   message :any;
   message1 :any;
@@ -31,8 +27,7 @@ export class AddCustomerComponent implements OnInit {
  flag :boolean;
  public show:boolean = true;
  public buttonName:any = 'Show';
-//  public show1:boolean = false;
-//  public buttonName1:any = 'Show1';
+resp:any
 
  constructor(private toastr:ToastrService,
   private route: ActivatedRoute,private router: Router,
@@ -71,11 +66,7 @@ export class AddCustomerComponent implements OnInit {
   
   public AddCustomer()
   {
-    if(this.GS[0].autoCustomerNo == false && this.Cust1.customerNo.trim()=="")
-    {
-      this.toastr.warning('Customer No is requried');
-    }
-    else if(this.Cust1.customerName.trim() == "")
+    if(this.Cust1.customerName.trim() == "")
     {
       this.toastr.warning('Customer Name is requried');
     }
@@ -83,59 +74,34 @@ export class AddCustomerComponent implements OnInit {
     {
     this.userName =localStorage.getItem('username');
     this.Cust1.CreatedBy = this.userName;
- 
     if(this.GS[0].autoCustomerNo == true){
 
-      this.Cust1.customerNo ='C'+ this.Cust2[0].customerNo;
-    this.AddCustomer1();
+    this.Cust1.customerNo ='C'+ this.Cust2[0].customerNo;
+    //this.AddCustomer1();
+     this.resp=this.service.AddCustomer(this.Cust1);
     }
     else 
     {
-      this.AddCustomerNoByUser1();
+      //this.AddCustomerNoByUser1();
+      this.resp=this.service.AddCustomer(this.Cust1);
     }
-  }
-  }
-
-  AddCustomerNoByUser1()
-    {  
-        let resp=this.service.AddCustomerNoByUser(this.Cust1);
-        resp.subscribe((data)=>{(this.message=data)
+    this.resp.subscribe((data)=>{(this.message=data)
     
-        if(data >= 1)
-        {
-          this.gotoList()
-          this.toastr.success('Customer Added Successfully','Added Successfully!.');
-        }
-        else if( data == -1)
-        {
-          this.toastr.error('Customer No is already exists','Failed.');
-        }
-        else{
-          this.toastr.error('Something went wrong', 'Error');
-        }
-      });
+      if(data >= 1)
+      {
+        this.gotoList()
+        this.toastr.success('Customer Added Successfully','Added Successfully!.');
+      }
+      else if( data == -1)
+      {
+        this.toastr.error('Customer No is already exists','Failed.');
+      }
+      else{
+        this.toastr.error('Something went wrong', 'Error');
+      }
+    });  
   }
-
-   AddCustomer1()
-    {
-        let resp=this.service.AddCustomer(this.Cust1);
-        resp.subscribe((data)=>{(this.message=data)
-    
-        if(data >= 1)
-        {
-          this.gotoList()
-          this.toastr.success('Customer Added Successfully','Added Successfully!.');
-        }
-        else if( data == -1)
-        {
-          this.toastr.error('Customer No is already exists','Failed.');
-        }
-        else{
-          this.toastr.error('Something went wrong', 'Error');
-        }
-      });
-    }
-  
+  }
 
    getno(){
   //  this.CustomerNo=this.service.GetCustomerNo().subscribe((data)=>data) 
@@ -147,3 +113,49 @@ export class AddCustomerComponent implements OnInit {
     }
 
 } 
+
+
+
+
+
+// AddCustomerNoByUser1()
+// {  
+//     let resp=this.service.AddCustomerNoByUser(this.Cust1);
+//     resp.subscribe((data)=>{(this.message=data)
+
+//     if(data >= 1)
+//     {
+//       this.gotoList()
+//       this.toastr.success('Customer Added Successfully','Added Successfully!.');
+//     }
+//     else if( data == -1)
+//     {
+//       this.toastr.error('Customer No is already exists','Failed.');
+//     }
+//     else{
+//       this.toastr.error('Something went wrong', 'Error');
+//     }
+//   });
+// }
+
+// AddCustomer1()
+// {
+//     let resp=this.service.AddCustomer(this.Cust1);
+//     resp.subscribe((data)=>{(this.message=data)
+
+//     if(data >= 1)
+//     {
+//       this.gotoList()
+//       this.toastr.success('Customer Added Successfully','Added Successfully!.');
+//     }
+//     else if( data == -1)
+//     {
+//       this.toastr.error('Customer No is already exists','Failed.');
+//     }
+//     else{
+//       this.toastr.error('Something went wrong', 'Error');
+//     }
+//   });
+// }
+
+

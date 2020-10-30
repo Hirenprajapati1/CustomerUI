@@ -38,7 +38,7 @@
                        {{cust.customerName}}   &nbsp; &nbsp;  ({{cust.customerNo}})</mat-option>                 
                     </mat-select>
 
-                    <mat-label><span class="req">* </span> Customer:</mat-label>
+                    <mat-label><span class="req">* </span> Customer</mat-label>
                     <mat-error class="invalid-feedback">
                         Customer is required 
                         </mat-error>
@@ -55,7 +55,7 @@
                   </div> -->
   
                   <mat-form-field appearance="fill" class="example-full-width1">
-                    <mat-label><span class="req">* </span>Invoice Amount:</mat-label>
+                    <mat-label><span class="req">* </span>Invoice Amount</mat-label>
                         <input matInput type="number" min="1" step="0.01"
                         [(ngModel)]="inv.invoiceAmount" name="invoiceAmount"
                         id="invoiceAmount"
@@ -64,9 +64,10 @@
                         [ngClass]="{'is-invalid': form.get('invoiceAmount')
                        .touched && form.get('invoiceAmount').invalid}"
                    >
-                   <mat-error class="invalid-feedback">
-                    Invoice Amount is required 
-                    </mat-error>
+                   <mat-error *ngIf="form.get('invoiceAmount').touched && form.get('invoiceAmount').invalid"  class="invalid-feedback">
+                    <div *ngIf="form.get('invoiceAmount').errors.required">Amount Should be the positive value.</div>
+                    <div *ngIf="form.get('invoiceAmount').errors.pattern">Amount Should be more then 1 requried.</div>
+                  </mat-error>  
 
                 </mat-form-field>
 
@@ -79,7 +80,7 @@
                 </div> -->
 
                 <mat-form-field appearance="fill"class="example-full-width1">
-                    <mat-label><span class="req">* </span>Invoice Date:</mat-label>
+                    <mat-label><span class="req">* </span>Invoice Date</mat-label>
                         <input matInput  type="date"
                         [(ngModel)]="inv.invoiceDate"
                         [ngModel]="inv.invoiceDate | date:'yyyy-MM-dd'"

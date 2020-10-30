@@ -43,18 +43,9 @@
                             <div *ngIf="form.get('customerNo').errors.pattern">Please remove whitespace</div>
                         </mat-error>          
 
-                             <!-- <span matPrefix>C&nbsp;</span> -->
                        
                         </mat-form-field>
                   
-                        <!-- <mat-slide-toggle  color="primary" #toggleBtn checked (click)="toggle()">Auto!</mat-slide-toggle> -->
-                   
-                        <!-- <span  class="custom-control custom-switch example-full-width12">
-                            <input  type="checkbox" checked (click)="toggle()" class="custom-control-input" id="customSwitches">
-                            <label class="custom-control-label" for="customSwitches">Auto</label>                            
-                         </span>
-                         <mat-slide-toggle>Slide me!</mat-slide-toggle>
-                -->
                          <mat-form-field appearance="fill" class="example-full-width1">
                             <mat-label><span class="req">* </span>Customer Name</mat-label>
                                 <input matInput [(ngModel)]="Cust1.customerName"
@@ -64,9 +55,8 @@
                                  [ngClass]="{'is-invalid': form.get('customerName')
                                 .touched && form.get('customerName').invalid}"
                             >
-                            <mat-error *ngIf="form.get('customerName').touched && form.get('customerName').invalid"  class="invalid-feedback">
-                                <div *ngIf="form.get('customerName').errors.required">Customer Name is required.</div>
-                                <div *ngIf="form.get('customerName').errors.pattern">Customer Name not contains any whitespace</div>
+                            <mat-error   class="invalid-feedback">
+                                <div >Customer Name is required.</div>
                             </mat-error>          
        
                         </mat-form-field>
@@ -85,38 +75,4 @@
         </div><!-- ends col-12 -->
     </div>
 </div>
-
-<!-- <div class="custom-control custom-switch">
-    <input type="checkbox"(click)="toggle()" class="custom-control-input" id="customSwitches">
-    <label class="custom-control-label" for="customSwitches">Auto</label>
-  </div>
-
-<button (click)="toggle()" id="bt">
-    {{buttonName}}
-</button>
- <button (click)="toggle1()" id="bt">
-    {{buttonName}}
-</button> 
-
-<ng-container *ngIf="show">
-    <div style="margin: 0 auto;text-align: left;">
-        <div>
-            <label>Name:</label>
-            <div><input id="tbname" name="yourname" /></div>
-        </div>
-    </div>
-</ng-container>
-
-
-<ng-container *ngIf="!show">
-    <div style="margin: 0 auto;text-align: left;">
-        <div>
-            <label>Address:</label>
-            <div><input id="tbname" name="yourname" /></div>
-        </div>
-    </div>
-</ng-container> -->
-
-
-
 
