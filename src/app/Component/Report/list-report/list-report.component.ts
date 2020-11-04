@@ -1,5 +1,6 @@
 import { ReportServiceService } from './../../../Services/report-service.service';
 import { Component, OnInit } from '@angular/core';
+import * as XLSX from 'xlsx'; 
 declare var $;
 declare var jQuery;
 
@@ -12,9 +13,23 @@ export class ListReportComponent implements OnInit {
   dataTable: any;
   tableData: any;
   title = 'Customer Monthly Report';
-
   constructor(public service : ReportServiceService) { }
 
+  fileName= 'Report.xlsx';  
+  exportexcel(): void 
+    {
+       /* table id is passed over here */   
+       let element = document.getElementById('table_Report'); 
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+			
+    }
   ngOnInit(): void {
     this.getDataFromSource();
   }

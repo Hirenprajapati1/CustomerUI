@@ -69,7 +69,7 @@ export class ReportServiceService {
 
  GetChartDataSales(){
   this.GetToken();
-    return this.http.get(environment.CustUrl +'Report/GetChartDataSales',{headers :tokenHeader })
+    return this.http.get(environment.CustUrl +'Report/GetChartDataSalesMonthly',{headers :tokenHeader })
     .pipe(
       tap(
           succ => { },

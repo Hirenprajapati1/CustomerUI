@@ -20,7 +20,7 @@
 
 
 
-<div class="container-fluid" > 
+<div class="container-fluid"  > 
     <!-- Info boxes -->
     <div class="row">
     <!-- /.col -->
@@ -267,6 +267,73 @@
                 </google-chart>
                   </div>
                 </div>
+
+
+
+                <div class=" col-md-6">
+                  <div class="info-box ">
+                  <google-chart  
+                  #chart 
+                  [width]="400" 
+                  [height]="300"
+                  [title]="Chart.titleMonthwisesales"
+                  [type]="Chart.typeColumn"
+                  [data]="temp1"
+                  [columns]="Chart.columns"
+                  [options]="Chart.options1"
+                >
+                </google-chart>
+                  </div>
+                </div> 
+
+                <div class=" col-md-6">
+                  <div class="info-box ">
+                  <google-chart  
+                  #chart 
+                  [width]="400" 
+                  [height]="300"
+                  [title]="Chart.titleMonthwisepaymentcollection"
+                  [type]="Chart.typeColumn"
+                  [data]="temp2"
+                  [columns]="Chart.columns"
+                  [options]="Chart.options1"
+                >
+                </google-chart>
+                  </div>
+                </div> 
+
+                <div class=" col-md-12">
+                  <div class="info-box ">
+                  <google-chart  
+                  #chart 
+                  [width]="800" 
+                  [height]="300"
+                  [title]="Chart.titleColumnchart"
+                  [type]="Chart.typeCombo"
+                  [data]="temp"
+                  [columns]="Chart.columns1"
+                  [options]="Chart.options2"
+                >
+                </google-chart>
+                  </div>
+                </div> 
+
+                <div class=" col-md-12">
+                  <div class="info-box ">
+                  <google-chart  
+                  #chart 
+                  [width]="800" 
+                  [height]="300"
+                  [type]="Chart.typeCombo1"
+                  [data]="temp"
+                  [columns]="Chart.columns1"
+                  [options]="Chart.options2"
+                >
+                </google-chart>
+                  </div>
+                </div> 
+
+
               </div>           
            
               </div>

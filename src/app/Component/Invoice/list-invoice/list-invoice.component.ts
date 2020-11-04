@@ -3,6 +3,7 @@ import { InvoiceServiceService } from './../../../Services/invoice-service.servi
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx'; 
 declare var $;
 declare var jQuery;
 
@@ -16,8 +17,25 @@ export class ListInvoiceComponent implements OnInit {
   tableData: any;
   title = 'Invoice';
   Invdata:any;
+  
   constructor(public service : InvoiceServiceService,private toastr: ToastrService,private router: Router) { }
 
+  fileName= 'Invoice.xlsx';  
+  exportexcel(): void 
+    {
+       /* table id is passed over here */   
+       let element = document.getElementById('table_Invoice'); 
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+			
+    }
+ 
   ngOnInit(): void {
     this.getDataFromSource();
   }

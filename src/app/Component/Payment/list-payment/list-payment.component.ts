@@ -3,6 +3,8 @@ import { PaymentServiceService } from './../../../Services/payment-service.servi
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx'; 
+
 declare var $;
 declare var jQuery;
 
@@ -17,7 +19,22 @@ export class ListPaymentComponent implements OnInit {
   title = 'Payment';
   Paydata: any;
   constructor(public service : PaymentServiceService,private toastr: ToastrService,private router: Router) { }
+  fileName= 'Payment.xlsx';  
+  exportexcel(): void 
+    {
+       /* table id is passed over here */   
+       let element = document.getElementById('table_Payment'); 
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+			
+    }
+ 
   ngOnInit(): void {
     this.getDataFromSource();
   }

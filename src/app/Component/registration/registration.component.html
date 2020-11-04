@@ -159,7 +159,7 @@
                                     [(ngModel)]="Admin.password"
                                     type="password"
                                     name="password" id="txtpassword"
-                                     placeholder="Please enter correct password"
+                                     placeholder="Please enter password"
                                      formControlName="password1"
                                      [ngClass]="{'is-invalid':form.get('password1')
                                      .touched && form.get('password1').invalid}"
@@ -170,10 +170,6 @@
                                     </mat-error>          
               
                             </mat-form-field>                                                       
-    
-
-                
-
                         
                     <div class=" example-full-width1 text-center "style="margin-top: 2%;" >
                         <input class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid" type="submit" name="submit_reg" value="Sign Up" 

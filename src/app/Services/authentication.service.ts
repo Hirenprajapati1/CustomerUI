@@ -1,3 +1,4 @@
+import { HelperService } from './helper.service';
 import { tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,7 +13,8 @@ var tokenHeader;
 })
 export class AuthenticationService {
 
-  constructor(private toastr: ToastrService,private router: Router,private http:HttpClient) { }
+  constructor(private toastr: ToastrService,private router: Router,private http:HttpClient
+   , private helper: HelperService) { }
 
   AdminLogin(FormData){
     return this.http.post(environment.CustUrl + 'Authentication',FormData)
@@ -23,19 +25,31 @@ export class AuthenticationService {
   }
 
   UpadeAdmin(FormData){
-    return this.http.post(environment.CustUrl + 'Authentication/UpdateAdmin',FormData)
-  }
-  
-
-  GetAdminByID(name: string): Observable<any>{
     this.GetToken();
-    return this.http.get(environment.CustUrl + 'Authentication/GetAdminByID/'+name,{headers :tokenHeader })
+    return this.http.post(environment.CustUrl + 'Report/UpdateAdmin',FormData,{headers :tokenHeader })
     .pipe(
       tap(
           succ => { },
           err => {
               if (err.status == 401){
-              this.RemoveToken()
+              this.helper.Logout();
+              }   
+          }
+      )
+  )
+  
+  }
+  
+
+  GetAdminByID(name: string): Observable<any>{
+    this.GetToken();
+    return this.http.get(environment.CustUrl + 'Report/GetAdminByID/'+name,{headers :tokenHeader })
+    .pipe(
+      tap(
+          succ => { },
+          err => {
+              if (err.status == 401){
+              this.helper.Logout();
               }   
           }
       )
@@ -48,12 +62,12 @@ export class AuthenticationService {
      tokenHeader = new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('token')})
 }
 
-RemoveToken(){
-  localStorage.removeItem('token');
-  this.toastr.info("please Login Again!");
-//  this.LoginAgaintoster();
-  this.router.navigateByUrl('/LoginPath');
-}
+// RemoveToken(){
+//   localStorage.removeItem('token');
+//   this.toastr.info("please Login Again!");
+// //  this.LoginAgaintoster();
+//   this.router.navigateByUrl('/LoginPath');
+// }
 
 
 }

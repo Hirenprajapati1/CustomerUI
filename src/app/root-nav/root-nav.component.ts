@@ -1,3 +1,4 @@
+import { HelperService } from './../Services/helper.service';
 import { NavbarService } from './../Services/navbar.service';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -20,7 +21,8 @@ FullName:any;
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private router: Router, public nav: NavbarService ) {
+  constructor(private breakpointObserver: BreakpointObserver,private router: Router
+    , private helper: HelperService, public nav: NavbarService ) {
     this.GetName();
   }
 
@@ -38,6 +40,10 @@ this.FullName='Hello '+this.Name
 
   onLogout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('gender');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('username');
     this.router.navigate(['/LoginPath']);
   }
 

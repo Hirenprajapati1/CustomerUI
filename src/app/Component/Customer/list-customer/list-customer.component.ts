@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
- 
+import * as XLSX from 'xlsx'; 
+
 declare var $;
 declare var jQuery;
 
@@ -20,6 +21,21 @@ export class ListCustomerComponent implements OnInit {
   Custdata: any;
   constructor(public service : CustomerServiceService,private toastr: ToastrService,private router: Router) { }
 
+  fileName= 'Customer.xlsx';  
+  exportexcel(): void 
+    {
+       /* table id is passed over here */   
+       let element = document.getElementById('table_Customer'); 
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+			
+    }
   ngOnInit(): void {
     this.getDataFromSource();
   }

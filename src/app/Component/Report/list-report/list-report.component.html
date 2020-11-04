@@ -5,7 +5,13 @@
 
             <div class="card-body ">
                 <div>
-                <p id="table_ReportFilter"><label><b>Select Customer:</b></label><br></p>
+    
+            <p class="col-md-4"id="table_ReportFilter"><label><b>Select Customer:</b></label><br></p>
+            <button style="cursor: pointer; float: right; margin-bottom: 5px;" (click)="exportexcel()" class="btn btn-success">
+                Export to excel
+                <!-- <mat-icon> cloud_download</mat-icon> -->
+              </button>
+
                     <table id="table_Report" class="display table table-striped">   
                         <thead>
                             <tr>
