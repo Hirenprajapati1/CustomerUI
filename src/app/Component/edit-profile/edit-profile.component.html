@@ -131,6 +131,25 @@
     
                         </div>
 
+
+                        <mat-form-field  class=" example-full-width1 ">
+                            <mat-select 
+                             [(ngModel)]="Admin.userType" name="userType"
+                             placeholder="Please select User type"
+                                formControlName="userType"
+                                [ngClass]="{'is-invalid': form.get('userType')
+                               .touched && form.get('userType').invalid}"
+                                >
+                              <mat-option disabled >Select user type</mat-option>
+                              <mat-option value="Admin">Admin</mat-option>
+                              <mat-option value="Operator">Operator</mat-option>
+                            </mat-select>
+                            <mat-label><span class="req">* </span>Select user type</mat-label>
+                            <mat-error class="invalid-feedback">
+                              User type is required 
+                              </mat-error>
+                          </mat-form-field>
+
                         <!-- <mat-radio-group aria-label="Select an option" class=" example-full-width1 ">
                             <mat-label><span class="req">* </span>Gender</mat-label>
                             <br/>

@@ -4,6 +4,7 @@ export class AdminData{
     lastName:string;
     gender:string;
     region:string;
+    userType:string;
     password:string;
     email:string;
     contactNo:string;

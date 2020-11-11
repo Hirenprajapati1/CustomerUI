@@ -22,7 +22,7 @@ FullName:any;
     );
 
   constructor(private breakpointObserver: BreakpointObserver,private router: Router
-    , private helper: HelperService, public nav: NavbarService ) {
+    , public helper: HelperService, public nav: NavbarService ) {
     this.GetName();
   }
 
@@ -44,6 +44,7 @@ this.FullName='Hello '+this.Name
     localStorage.removeItem('gender');
     localStorage.removeItem('lastName');
     localStorage.removeItem('username');
+    localStorage.removeItem('userType');
     this.router.navigate(['/LoginPath']);
   }
 

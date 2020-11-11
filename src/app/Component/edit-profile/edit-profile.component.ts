@@ -19,6 +19,7 @@ export class EditProfileComponent implements OnInit {
     contactNo: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),  
     emailid: new FormControl('',[Validators.required, Validators.email]),
     gender: new FormControl('',Validators.required),
+    userType: new FormControl('',[Validators.required]),
     password1: new FormControl('',Validators.required)
     // region: new FormControl('',Validators.required)
   })

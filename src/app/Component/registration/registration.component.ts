@@ -18,7 +18,8 @@ export class RegistrationComponent implements OnInit {
     username: new FormControl('',[Validators.required, Validators.pattern(/^\S*$/)]),
     contactNo: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),  
     emailid: new FormControl('',[Validators.required, Validators.email]),
-    gender: new FormControl('',Validators.required),
+    gender: new FormControl(''),
+    userType: new FormControl('',[Validators.required]),
     password1: new FormControl('',[Validators.required, Validators.minLength(4)])
     // region: new FormControl('',Validators.required)
     
@@ -32,13 +33,12 @@ export class RegistrationComponent implements OnInit {
     private route: ActivatedRoute,private router: Router,
     private service:AuthenticationService,public nav: NavbarService ) {
       this.nav.hide();
-
     }
 
   ngOnInit(): void {
 
 //    this.nav.show();
-  //  this.Admin.gender= "Male";
+    this.Admin.gender= "Male";
 
 }
   selectedRegians:any=[];

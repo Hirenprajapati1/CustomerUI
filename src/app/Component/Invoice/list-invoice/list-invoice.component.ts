@@ -1,3 +1,4 @@
+import { HelperService } from './../../../Services/helper.service';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceServiceService } from './../../../Services/invoice-service.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,8 +19,10 @@ export class ListInvoiceComponent implements OnInit {
   title = 'Invoice';
   Invdata:any;
   
-  constructor(public service : InvoiceServiceService,private toastr: ToastrService,private router: Router) { }
+  constructor(public service : InvoiceServiceService,private toastr: ToastrService
+    ,private router: Router,public helper: HelperService) { }
 
+    
   fileName= 'Invoice.xlsx';  
   exportexcel(): void 
     {
@@ -88,7 +91,9 @@ export class ListInvoiceComponent implements OnInit {
                   }     
         
         },      
-          {
+     
+        {
+          if(){},
           data: null,
           className: "dt-center",
           defaultContent: '<div class="btn-group btn-group-sm"><a href="" class="btn btn btn-primary editor_edit" title="Edit" ><i class="glyphicon glyphicon-pencil edituserinfo" aria-hidden="true"></i></a>&nbsp;&nbsp;<a href="" class="btn btn btn-danger editor_remove" title="Delete"><i class="glyphicon glyphicon-trash edituserinfo" aria-hidden="true"></i></a></div>',
@@ -122,7 +127,82 @@ export class ListInvoiceComponent implements OnInit {
        },
       //   //
       });
-    
+    //Second time
+    var p=$('#table_Invoice1').DataTable({
+      data: this.tableData,
+      "language": {
+       "lengthMenu": "Display _MENU_ records per page  ",
+       "zeroRecords": "No records found",
+       "infoEmpty": "No records available",
+       "infoFiltered": "(filtered from _MAX_ total records)",
+      },
+ 
+      lengthMenu: [[10,15,25,50,-1],[10,15,25,50,"All"]],
+      columnDefs: [
+        { type: 'stringDateMonthYear', targets: [3,5] }
+      ],
+  
+        columns: [
+        { data: 'invoiceNo', className: "dt-right"},
+        { data: 'customerName', className: "dt-center"},
+        { data: 'customerNo', className: "dt-right"},
+        { data: 'invoiceDate',
+        render: function (data) {
+          //        var  monthsarry = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                  var date = new Date(data);
+                  var dateonly = date.getDate();
+                  var month =  date.toLocaleString('en-us', { month: 'short' }); 
+            //      var month = monthsarry[date.getMonth()];
+//              var Data1=(dateonly.toString().length > 1 ? dateonly : "0" + dateonly) + "-" +(month.toString()) + "-" +  date.getFullYear().toString().substr(-2);
+            var Data1=(dateonly.toString().length > 1 ? dateonly : "0" + dateonly) + "-" +(month.toString()) + "-" +  date.getFullYear().toString();
+            return Data1;
+                }     
+        },
+        { data: 'invoiceAmount',render: $.fn.dataTable.render.number( ',', '.',2, '$'), className: "dt-right"},
+        { data: 'paymentDueDate',
+        render: function (data) {
+          //        var  monthsarry = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                  var date = new Date(data);
+                  var dateonly = date.getDate();
+                  var month =  date.toLocaleString('en-us', { month: 'short' }); 
+            //      var month = monthsarry[date.getMonth()];
+       //     var Data1=(dateonly.toString().length > 1 ? dateonly : "0" + dateonly) + "-" +(month.toString()) + "-" +  date.getFullYear().toString().substr(-2);
+            var Data1=(dateonly.toString().length > 1 ? dateonly : "0" + dateonly) + "-" +(month.toString()) + "-" +  date.getFullYear().toString();
+            return Data1;
+                }     
+      
+      },      
+   
+      ],
+      
+      // Filter Dropdown
+ 
+      initComplete: function () {
+         this.api().columns([1]).every( function () {
+             var column = this;
+             var select = $('<select class="form-control"><option value="">All</option></select>')
+                 .appendTo( '#table_InvoiceFilter')
+                 .on( 'change', function () {
+                     var val = $(this).val();
+                     column.search( this.value ).draw();
+                 } );
+ 
+             // Only contains the *visible* options from the first page
+             console.log(column.data().unique());
+ 
+             // If I add extra data in my JSON, how do I access it here besides column.data?
+             column.data().unique().sort().each( function ( d, j ) {
+              if(d != null){
+                 select.append( '<option value="'+d+'">'+d+'</option>' )}
+             } );
+         } );     //
+     },
+    //   //
+    });
+  
+
+
+    //eeond time end
 //edit delete
 $("#table_Invoice tbody").unbind("click");
 

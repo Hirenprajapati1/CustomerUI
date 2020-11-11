@@ -1,3 +1,4 @@
+import { HelperService } from './../../../Services/helper.service';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentServiceService } from './../../../Services/payment-service.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class ListPaymentComponent implements OnInit {
   tableData: any;
   title = 'Payment';
   Paydata: any;
-  constructor(public service : PaymentServiceService,private toastr: ToastrService,private router: Router) { }
+  constructor(public service : PaymentServiceService,private toastr: ToastrService,
+    private router: Router,public helper: HelperService) { }
   fileName= 'Payment.xlsx';  
   exportexcel(): void 
     {

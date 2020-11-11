@@ -16,6 +16,7 @@
 .example-full-width1 {
   width: 90%;
   padding-left: 10%;
+  margin-top: 5px;
 }
   .example-full-width2 {
     width: 100%;
@@ -25,3 +26,5 @@
   mat-form-field {
     margin-right: 12px;
   }
+
+  

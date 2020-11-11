@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { HelperService } from './../../Services/helper.service';
 import { ReportServiceService } from './../../Services/report-service.service';
 import { Component, OnInit } from '@angular/core';
 //import { Color, Label, ThemeService } from 'ng2-charts';
@@ -38,7 +40,10 @@ export class DashboardComponent implements OnInit {
   //   ['Platinum', 21.45,'color: #e5e4e2','Pt' ]];
   // d1: DashboardData =new DashboardData();
   
-  constructor(public service : ReportServiceService) { 
+  constructor(public service : ReportServiceService ,private router: Router, public helper: HelperService)
+   { 
+     if(helper.Admintype)
+     {
     this.Data=this.service.GetDashbordData().subscribe((data)=>{this.Data = data
 
       this.TotelSalesAndPaymentCollection=[['Sales',this.Data[0].totelSeles],['Payment Collection',this.Data[0].totelPaymentCollestions]];
@@ -46,7 +51,7 @@ export class DashboardComponent implements OnInit {
       this.ThisYearSalesAndPaymentCollection=[['Sales',this.Data[0].salesYearly],['Payment Collection',this.Data[0].paymentCollestionsYearly]]
 
       this.TotelSalesAndPaymentCollectionpie=[['Payment Collection',this.Data[0].totelPaymentCollestions],['Due Payments',(this.Data[0].totelSeles-this.Data[0].totelPaymentCollestions)]];
-
+      
   
       // var tempdata =[];
       // var tempdata1 =[];
@@ -61,7 +66,10 @@ export class DashboardComponent implements OnInit {
       // console.log(this.temp1);
   
     });
-    
+     }
+     else{
+      this.router.navigate(["/ListInvoice"]);    
+     }
   }
 
   //Demo

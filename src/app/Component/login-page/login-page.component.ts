@@ -1,3 +1,4 @@
+import { HelperService } from './../../Services/helper.service';
 import { NavbarService } from './../../Services/navbar.service';
 import { AuthenticationService } from './../../Services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
@@ -28,7 +29,8 @@ export class LoginPageComponent implements OnInit {
   flag:boolean;
   flag1:boolean;
   constructor(private toastr:ToastrService,private route: ActivatedRoute,private router: Router,
-    private service:AuthenticationService,public nav: NavbarService ) {
+    private service:AuthenticationService,public nav: NavbarService 
+    , public helper: HelperService) {
       this.nav.hide();
      }
 
@@ -61,9 +63,22 @@ export class LoginPageComponent implements OnInit {
           localStorage.setItem('lastName', res.lastName);
           localStorage.setItem('gender', res.gender);
           localStorage.setItem('region', res.region);
+          localStorage.setItem('userType', res.userType);
+          
           this.toastr.success("login Successfully");
           this.nav.show(); 
           this.gotDashBoard();
+          if(res.userType == "Admin")
+          {
+            this.helper.Admintype=true;
+            this.helper.Opretortype= false;
+          }else if(res.userType == "Operator"){
+            this.helper.Admintype=false;
+            this.helper.Opretortype= true;
+          }else{
+            this.helper.Admintype=false;
+            this.helper.Opretortype= false;
+          }
           // this.gotoList();
           // this.router.navigateByUrl('/home');
         },

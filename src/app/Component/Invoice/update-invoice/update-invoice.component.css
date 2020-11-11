@@ -29,3 +29,11 @@
       margin: 0; 
   }
   
+  mat-form-field{
+    margin-top: 10px;
+  }
+  
+  mat-error{
+    font-size: 9px;
+  }
+  

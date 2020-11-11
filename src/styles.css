@@ -227,3 +227,13 @@
 
 
   
+mat-form-field{
+  margin-top: 10px;
+}
+mat-form-field.mat-error{
+  font-size: 10px;
+}
+
+.btn-group{
+  margin-top: 10px;
+}
