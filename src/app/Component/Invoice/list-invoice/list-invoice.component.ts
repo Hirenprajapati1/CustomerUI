@@ -57,8 +57,10 @@ export class ListInvoiceComponent implements OnInit {
         },
    
         lengthMenu: [[10,15,25,50,-1],[10,15,25,50,"All"]],
+     
         columnDefs: [
-          { type: 'stringDateMonthYear', targets: [3,5] }
+          { type: 'stringDateMonthYear', targets: [3,5] },
+          { targets: 6, visible: localStorage.getItem('userType') === 'Admin'}
         ],
     
           columns: [
@@ -93,7 +95,7 @@ export class ListInvoiceComponent implements OnInit {
         },      
      
         {
-          if(){},
+//          if(){},
           data: null,
           className: "dt-center",
           defaultContent: '<div class="btn-group btn-group-sm"><a href="" class="btn btn btn-primary editor_edit" title="Edit" ><i class="glyphicon glyphicon-pencil edituserinfo" aria-hidden="true"></i></a>&nbsp;&nbsp;<a href="" class="btn btn btn-danger editor_remove" title="Delete"><i class="glyphicon glyphicon-trash edituserinfo" aria-hidden="true"></i></a></div>',

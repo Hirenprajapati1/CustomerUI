@@ -34,8 +34,22 @@
 />
 </head>
 
- <body  class=" hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"> 
-    <!-- <toolbar-overview-example></toolbar-overview-example> -->
+ <body oncontextmenu="return false;"  class=" hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"> 
+  <!-- <script>
+    document.onkeydown = function() {
+  if (event.keyCode == 123) {
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 'I'.charCodeAt(0)) {
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 'J'.charCodeAt(0)) {
+    return false;
+  } else if (event.ctrlKey && event.keyCode == "U".charCodeAt(0)) {
+  //  alert("This function has been disabled to prevent you from stealing my code!");
+    return false;
+  }
+}
+  </script>  -->
+  <!-- <toolbar-overview-example></toolbar-overview-example> -->
 
   <!-- <div class="mat-app-background basic-container">
     <app-root>

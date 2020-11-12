@@ -26,6 +26,7 @@ const routes: Routes = [
 //  {path:'', redirectTo:'Nav',pathMatch :'full'},
   {path:'LoginPath',component:LoginPageComponent},
   {path:'', redirectTo:'DashBoard',pathMatch :'full'},
+ // {path:'**', redirectTo:'DashBoard',pathMatch :'full'},
  
   {path:'Registration',component:RegistrationComponent},
  // {path:'Nav',component:MainComponent,

@@ -56,7 +56,9 @@ export class ListPaymentComponent implements OnInit {
    
         lengthMenu: [[10,15,25,50,-1],[10,15,25,50,"All"]],
         columnDefs: [
-          { type: 'stringDateMonthYear', targets: [3] }
+          { type: 'stringDateMonthYear', targets: [3] },
+          { targets: 5, visible: localStorage.getItem('userType') === 'Admin' }
+
         ],
 
           columns: [

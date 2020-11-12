@@ -42,8 +42,8 @@ export class DashboardComponent implements OnInit {
   
   constructor(public service : ReportServiceService ,private router: Router, public helper: HelperService)
    { 
-     if(helper.Admintype)
-     {
+    //  if(helper.Admintype)
+    //  {
     this.Data=this.service.GetDashbordData().subscribe((data)=>{this.Data = data
 
       this.TotelSalesAndPaymentCollection=[['Sales',this.Data[0].totelSeles],['Payment Collection',this.Data[0].totelPaymentCollestions]];
@@ -66,10 +66,10 @@ export class DashboardComponent implements OnInit {
       // console.log(this.temp1);
   
     });
-     }
-     else{
-      this.router.navigate(["/ListInvoice"]);    
-     }
+    //  }
+    //  else{
+    //   this.router.navigate(["/ListInvoice"]);    
+    //  }
   }
 
   //Demo
