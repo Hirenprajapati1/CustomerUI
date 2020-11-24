@@ -1,3 +1,4 @@
+import { HelperService } from './../../../Services/helper.service';
 import { CustomerServiceService } from './../../../Services/customer-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -19,7 +20,8 @@ export class ListCustomerComponent implements OnInit {
   title = 'Customer';
   custid: any;
   Custdata: any;
-  constructor(public service : CustomerServiceService,private toastr: ToastrService,private router: Router) { }
+  constructor(public service : CustomerServiceService,private toastr: ToastrService
+    , public helper: HelperService,private router: Router) { }
 
   fileName= 'Customer.xlsx';  
   exportexcel(): void 
@@ -55,6 +57,12 @@ export class ListCustomerComponent implements OnInit {
         },
    
         lengthMenu: [[10,15,25,50,-1],[10,15,25,50,"All"]],
+     
+        columnDefs: [
+          { targets: 2, visible: localStorage.getItem('userType') === 'Admin'}
+        ],
+
+
           columns: [
           { data: 'customerNo'},
           { data: 'customerName'},

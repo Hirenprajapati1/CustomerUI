@@ -41,9 +41,7 @@
                         <mat-error *ngIf="form.get('customerNo').touched && form.get('customerNo').invalid"  class="invalid-feedback">
                             <div *ngIf="form.get('customerNo').errors.required">Customer No is required.</div>
                             <div *ngIf="form.get('customerNo').errors.pattern">Please remove whitespace</div>
-                        </mat-error>          
-
-                       
+                        </mat-error>                 
                         </mat-form-field>
                   
                          <mat-form-field appearance="fill" class="example-full-width1">

@@ -44,7 +44,10 @@ GetToken()
      tap(
          succ => { },
          err => {
-             if (err.status == 401){
+            if (err.status == 403){
+                this.helper.Error403()
+            }      
+            else if (err.status == 401){
              this.helper.Logout()
              }   
          }
@@ -61,7 +64,10 @@ GetCustomerNo(){
    tap(
        succ => { },
        err => {
-           if (err.status == 401){
+        if (err.status == 403){
+            this.helper.Error403()
+        }      
+        else if (err.status == 401){
            this.helper.Logout();
            }   
        }
@@ -78,7 +84,10 @@ GetCustomerNo(){
     tap(
         succ => { },
         err => {
-            if (err.status == 401){
+            if (err.status == 403){
+                this.helper.Error403()
+            }      
+            else if (err.status == 401){
             this.helper.Logout()
             }   
         }
@@ -93,7 +102,10 @@ AddCustomerNoByUser(Customer){
     tap(
         succ => { },
         err => {
-            if (err.status == 401){
+            if (err.status == 403){
+                this.helper.Error403()
+            }      
+            else if (err.status == 401){
             this.helper.Logout()
             }   
         }
@@ -112,7 +124,10 @@ GetCustomerById(id: number): Observable<any>{
     tap(
         succ => { },
         err => {
-            if (err.status == 401){
+            if (err.status == 403){
+                this.helper.Error403()
+            }      
+            else if (err.status == 401){
             this.helper.Logout()
             }   
         }
@@ -126,8 +141,10 @@ GetCustomerById(id: number): Observable<any>{
   .pipe(
     tap(
         succ => { },
-        err => {
-            if (err.status == 401){
+        err => { if (err.status == 403){
+            this.helper.Error403()
+        }      
+        else if (err.status == 401){
             this.helper.Logout()
             }   
         }
@@ -143,7 +160,10 @@ UpdateCustomer(id: number,Cust: CustomerData){
     tap(
         succ => { },
         err => {
-            if (err.status == 401){
+            if (err.status == 403){
+                this.helper.Error403()
+            }      
+            else if (err.status == 401){
             this.helper.Logout()
             }   
         }
